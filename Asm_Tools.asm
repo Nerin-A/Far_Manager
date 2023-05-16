@@ -2,9 +2,12 @@
 
 Make_Sum proc
 ; extern "C" int Make_Sum(int value_1, int value_2)
+; RCX = value_1
+; RDX = value_2
+; Return RAX
 
-	mov eax, value_1
-	add eax, value_2
+	mov eax, ecx
+	add eax, edx
 
 	ret
 
