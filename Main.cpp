@@ -13,20 +13,11 @@ int main(void)
    COORD coordBufCoord;
    BOOL fSuccess;
 
-   // Get a handle to the STDOUT screen buffer to copy from and
-   // create a new screen buffer to copy to.
-
+   // Get a handle to the STDOUT screen buffer to copy from and create a new screen buffer to copy to.
    hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-   hNewScreenBuffer = CreateConsoleScreenBuffer(
-      GENERIC_READ |           // read/write access
-      GENERIC_WRITE,
-      FILE_SHARE_READ |
-      FILE_SHARE_WRITE,        // shared
-      NULL,                    // default security attributes
-      CONSOLE_TEXTMODE_BUFFER, // must be TEXTMODE
-      NULL);                   // reserved; must be NULL
-   if (hStdout == INVALID_HANDLE_VALUE ||
-      hNewScreenBuffer == INVALID_HANDLE_VALUE)
+   hNewScreenBuffer = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE, 0,CONSOLE_TEXTMODE_BUFFER, 0);
+
+   if (hStdout == INVALID_HANDLE_VALUE || hNewScreenBuffer == INVALID_HANDLE_VALUE)
    {
       printf("CreateConsoleScreenBuffer failed - (%d)\n", GetLastError());
       return 1;
@@ -41,36 +32,31 @@ int main(void)
    }
 
    // Set the source rectangle.
-
    srctReadRect.Top = 0;    // top left: row 0, col 0
    srctReadRect.Left = 0;
    srctReadRect.Bottom = 1; // bot. right: row 1, col 79
    srctReadRect.Right = 79;
 
    // The temporary buffer size is 2 rows x 80 columns.
-
    coordBufSize.Y = 2;
    coordBufSize.X = 80;
 
-   // The top left destination cell of the temporary buffer is
-   // row 0, col 0.
-
+   // The top left destination cell of the temporary buffer is row 0, col 0.
    coordBufCoord.X = 0;
    coordBufCoord.Y = 0;
 
-   // Copy the block from the screen buffer to the temp. buffer.
-
-   fSuccess = ReadConsoleOutput(
-      hStdout,        // screen buffer to read from
-      chiBuffer,      // buffer to copy into
-      coordBufSize,   // col-row size of chiBuffer
-      coordBufCoord,  // top left dest. cell in chiBuffer
-      &srctReadRect); // screen buffer source rectangle
-   if (!fSuccess)
-   {
-      printf("ReadConsoleOutput failed - (%d)\n", GetLastError());
-      return 1;
-   }
+   //// Copy the block from the screen buffer to the temp. buffer.
+   //fSuccess = ReadConsoleOutput(
+   //   hStdout,        // screen buffer to read from
+   //   chiBuffer,      // buffer to copy into
+   //   coordBufSize,   // col-row size of chiBuffer
+   //   coordBufCoord,  // top left dest. cell in chiBuffer
+   //   &srctReadRect); // screen buffer source rectangle
+   //if (!fSuccess)
+   //{
+   //   printf("ReadConsoleOutput failed - (%d)\n", GetLastError());
+   //   return 1;
+   //}
 
    // Set the destination rectangle.
 
