@@ -10,7 +10,7 @@ int main(void)
    CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info{};
    CHAR_INFO* screen_buffer;
    COORD screen_buffer_pos{};
-   BOOL fSuccess;
+   int screen_buffer_size;
 
    // Get a handle to the STDOUT screen buffer to copy from and create a new screen buffer to copy to.
    std_handle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -36,7 +36,10 @@ int main(void)
       return 1;
    }
 
-   screen_buffer = new CHAR_INFO[(int)screen_buffer_info.dwSize.X * (int)screen_buffer_info.dwSize.Y];
+   screen_buffer_size = (int)screen_buffer_info.dwSize.X * (int)screen_buffer_info.dwSize.Y;
+
+   screen_buffer = new CHAR_INFO[screen_buffer_size];
+   memset(screen_buffer, 0, screen_buffer_size * sizeof(CHAR_INFO));
 
    // Set the destination rectangle.
 
