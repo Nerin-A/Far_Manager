@@ -8,6 +8,7 @@ int main(void)
    HANDLE std_handle, screen_buffer_handle;
    SMALL_RECT srctReadRect;
    SMALL_RECT srctWriteRect;
+   CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info{};
    CHAR_INFO chiBuffer[160]; // [2][80];
    COORD coordBufSize;
    COORD coordBufCoord;
@@ -28,6 +29,12 @@ int main(void)
    if (!SetConsoleActiveScreenBuffer(screen_buffer_handle))
    {
       printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
+      return 1;
+   }   
+   
+   if (! GetConsoleScreenBufferInfo(screen_buffer_handle, &screen_buffer_info))
+   {
+      printf("GetConsoleScreenBufferInfo failed - (%d)\n", GetLastError());
       return 1;
    }
 
