@@ -9,7 +9,8 @@ int main(void)
    SMALL_RECT srctReadRect;
    SMALL_RECT srctWriteRect;
    CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info{};
-   CHAR_INFO chiBuffer[160]; // [2][80];
+   //CHAR_INFO chiBuffer[160]; // [2][80];
+   CHAR_INFO* screen_buffer;
    COORD coordBufSize;
    COORD coordBufCoord;
    BOOL fSuccess;
@@ -38,6 +39,8 @@ int main(void)
       return 1;
    }
 
+   screen_buffer = new CHAR_INFO[(int)screen_buffer_info.dwSize.X * (int)screen_buffer_info.dwSize.Y];
+
    // Set the source rectangle.
    srctReadRect.Top = 0;    // top left: row 0, col 0
    srctReadRect.Left = 0;
@@ -61,12 +64,12 @@ int main(void)
 
    // Copy from the temporary buffer to the new screen buffer.
 
-   chiBuffer[0].Char.UnicodeChar = L'X';
-   chiBuffer[0].Attributes = 0x50;
+   screen_buffer[0].Char.UnicodeChar = L'X';
+   screen_buffer[0].Attributes = 0x50;
 
    fSuccess = WriteConsoleOutput(
       screen_buffer_handle, // screen buffer to write to
-      chiBuffer,        // buffer to copy from
+      screen_buffer,        // buffer to copy from
       coordBufSize,     // col-row size of chiBuffer
       coordBufCoord,    // top left src cell in chiBuffer
       &srctWriteRect);  // dest. screen buffer rectangle
