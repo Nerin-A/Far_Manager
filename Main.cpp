@@ -5,7 +5,7 @@
 
 int main(void)
 {
-   HANDLE hStdout, hNewScreenBuffer;
+   HANDLE std_handle, screen_buffer_handle;
    SMALL_RECT srctReadRect;
    SMALL_RECT srctWriteRect;
    CHAR_INFO chiBuffer[160]; // [2][80];
@@ -14,10 +14,10 @@ int main(void)
    BOOL fSuccess;
 
    // Get a handle to the STDOUT screen buffer to copy from and create a new screen buffer to copy to.
-   hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-   hNewScreenBuffer = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE, 0,CONSOLE_TEXTMODE_BUFFER, 0);
+   std_handle = GetStdHandle(STD_OUTPUT_HANDLE);
+   screen_buffer_handle = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE, 0,CONSOLE_TEXTMODE_BUFFER, 0);
 
-   if (hStdout == INVALID_HANDLE_VALUE || hNewScreenBuffer == INVALID_HANDLE_VALUE)
+   if (std_handle == INVALID_HANDLE_VALUE || screen_buffer_handle == INVALID_HANDLE_VALUE)
    {
       printf("CreateConsoleScreenBuffer failed - (%d)\n", GetLastError());
       return 1;
@@ -25,7 +25,7 @@ int main(void)
 
    // Make the new screen buffer the active screen buffer.
 
-   if (!SetConsoleActiveScreenBuffer(hNewScreenBuffer))
+   if (!SetConsoleActiveScreenBuffer(screen_buffer_handle))
    {
       printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
       return 1;
@@ -45,19 +45,6 @@ int main(void)
    coordBufCoord.X = 0;
    coordBufCoord.Y = 0;
 
-   //// Copy the block from the screen buffer to the temp. buffer.
-   //fSuccess = ReadConsoleOutput(
-   //   hStdout,        // screen buffer to read from
-   //   chiBuffer,      // buffer to copy into
-   //   coordBufSize,   // col-row size of chiBuffer
-   //   coordBufCoord,  // top left dest. cell in chiBuffer
-   //   &srctReadRect); // screen buffer source rectangle
-   //if (!fSuccess)
-   //{
-   //   printf("ReadConsoleOutput failed - (%d)\n", GetLastError());
-   //   return 1;
-   //}
-
    // Set the destination rectangle.
 
    srctWriteRect.Top = 10;    // top lt: row 10, col 0
@@ -71,7 +58,7 @@ int main(void)
    chiBuffer[0].Attributes = 0x50;
 
    fSuccess = WriteConsoleOutput(
-      hNewScreenBuffer, // screen buffer to write to
+      screen_buffer_handle, // screen buffer to write to
       chiBuffer,        // buffer to copy from
       coordBufSize,     // col-row size of chiBuffer
       coordBufCoord,    // top left src cell in chiBuffer
@@ -85,7 +72,7 @@ int main(void)
 
    // Restore the original active screen buffer.
 
-   if (!SetConsoleActiveScreenBuffer(hStdout))
+   if (!SetConsoleActiveScreenBuffer(std_handle))
    {
       printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
       return 1;
