@@ -67,6 +67,9 @@ int main(void)
 
    // Copy from the temporary buffer to the new screen buffer.
 
+   chiBuffer[0].Char.UnicodeChar = L'X';
+   chiBuffer[0].Attributes = 0x50;
+
    fSuccess = WriteConsoleOutput(
       hNewScreenBuffer, // screen buffer to write to
       chiBuffer,        // buffer to copy from
