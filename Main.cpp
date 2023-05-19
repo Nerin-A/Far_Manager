@@ -6,13 +6,10 @@
 int main(void)
 {
    HANDLE std_handle, screen_buffer_handle;
-   SMALL_RECT srctReadRect;
    SMALL_RECT srctWriteRect;
    CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info{};
-   //CHAR_INFO chiBuffer[160]; // [2][80];
    CHAR_INFO* screen_buffer;
-   COORD coordBufSize;
-   COORD coordBufCoord;
+   COORD screen_buffer_pos{};
    BOOL fSuccess;
 
    // Get a handle to the STDOUT screen buffer to copy from and create a new screen buffer to copy to.
@@ -41,20 +38,6 @@ int main(void)
 
    screen_buffer = new CHAR_INFO[(int)screen_buffer_info.dwSize.X * (int)screen_buffer_info.dwSize.Y];
 
-   // Set the source rectangle.
-   srctReadRect.Top = 0;    // top left: row 0, col 0
-   srctReadRect.Left = 0;
-   srctReadRect.Bottom = 1; // bot. right: row 1, col 79
-   srctReadRect.Right = 79;
-
-   // The temporary buffer size is 2 rows x 80 columns.
-   coordBufSize.Y = 2;
-   coordBufSize.X = 80;
-
-   // The top left destination cell of the temporary buffer is row 0, col 0.
-   coordBufCoord.X = 0;
-   coordBufCoord.Y = 0;
-
    // Set the destination rectangle.
 
    srctWriteRect.Top = 10;    // top lt: row 10, col 0
@@ -67,17 +50,12 @@ int main(void)
    screen_buffer[0].Char.UnicodeChar = L'X';
    screen_buffer[0].Attributes = 0x50;
 
-   fSuccess = WriteConsoleOutput(
-      screen_buffer_handle, // screen buffer to write to
-      screen_buffer,        // buffer to copy from
-      coordBufSize,     // col-row size of chiBuffer
-      coordBufCoord,    // top left src cell in chiBuffer
-      &srctWriteRect);  // dest. screen buffer rectangle
-   if (!fSuccess)
+   if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {
       printf("WriteConsoleOutput failed - (%d)\n", GetLastError());
       return 1;
    }
+
    Sleep(5000);
 
    // Restore the original active screen buffer.
