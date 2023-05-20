@@ -23,12 +23,21 @@ Draw_Line proc
 ; R9 = symbol
 ; Return RAX
 
+;_show_symbol:
+;	mov [rcx], r9d
+;	add rcx, 4
+;
+;	dec r8
+;
+;	jnz _show_symbol
+
+	mov rdi, rcx
+	mov eax, r9d
+
 _show_symbol:
-	mov [rcx], r9d
-	add rcx, 4
+	stosd
 
 	dec r8
-
 	jnz _show_symbol
 
 	ret
