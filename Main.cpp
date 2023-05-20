@@ -67,7 +67,7 @@ int main(void)
    //screen_buffer[0].Attributes = 0x50;
 
    CHAR_INFO symbol{};
-   symbol.Char.UnicodeChar = L'_';
+   symbol.Char.UnicodeChar = L'-';
    symbol.Attributes = 0x50;
    XYPos x_y_pos(2, 1);
 
