@@ -2,6 +2,7 @@
 ;------------------------------------------------------------------------------------------------------------
 Make_Sum proc
 ; extern "C" int Make_Sum(int value_1, int value_2)
+; Parameters:
 ; RCX = value_1
 ; RDX = value_2
 ; Return RAX
@@ -14,7 +15,13 @@ Make_Sum proc
 Make_Sum endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Line proc
-;extern "C" void Draw_Line(int* screen_buffer, int x_pos, int y_pos, int length, wchar_t symbol, short attribute);
+; extern "C" void Draw_Line(CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
+; Parameters:
+; RCX = screen_buffer
+; RDX = pos
+; R8 = length
+; R9 = symbol
+; Return RAX
 
 	ret
 

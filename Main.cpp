@@ -1,4 +1,7 @@
-﻿struct XYPos
+﻿#include <windows.h>
+#include <stdio.h>
+
+struct XYPos
 {
    XYPos(short x_pos, short y_pos)
       : X_Pos(x_pos), Y_Pos(y_pos)
@@ -10,10 +13,8 @@
 };
 
 extern "C" int Make_Sum(int value_1, int value_2);
-extern "C" void Draw_Line(int* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
+extern "C" void Draw_Line(CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
 
-#include <windows.h>
-#include <stdio.h>
 //------------------------------------------------------------------------------------------------------------
 int main(void)
 {
@@ -68,8 +69,9 @@ int main(void)
    CHAR_INFO symbol{};
    symbol.Char.UnicodeChar = L'_';
    symbol.Attributes = 0x50;
+   XYPos x_y_pos(2, 1);
 
-   Draw_Line( (int*)screen_buffer, XYPos(2, 1), 10, symbol);
+   Draw_Line(screen_buffer, x_y_pos, 10, symbol);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {
