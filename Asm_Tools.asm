@@ -22,20 +22,21 @@ Draw_Line proc
 ; R8 = length
 ; R9 = symbol
 ; Return RAX
+	
+	push rax
+	push rcx
+	push rdi
 
-;_show_symbol:
-;	mov [rcx], r9d
-;	add rcx, 4
-;
-;	dec r8
-;
-;	jnz _show_symbol
-
+	; Showing symbols
 	mov rdi, rcx
 	mov eax, r9d
-
 	mov rcx, r8
+
 	rep stosd
+
+	pop rdi
+	pop rcx
+	pop rax
 
 	ret
 
