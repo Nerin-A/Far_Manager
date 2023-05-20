@@ -1,5 +1,15 @@
-﻿extern "C" int Make_Sum(int value_1, int value_2);
-extern "C" void Draw_Line(int* screen_buffer, int x_pos, int y_pos, int length, wchar_t symbol, short attribute);
+﻿struct XYPos
+{
+   XYPos(short x_pos, short y_pos)
+      : X_Pos(x_pos), Y_Pos(y_pos)
+   {
+   }
+   short X_Pos;
+   short Y_Pos;
+};
+
+extern "C" int Make_Sum(int value_1, int value_2);
+extern "C" void Draw_Line(int* screen_buffer, XYPos pos, int length, wchar_t symbol, short attribute);
 
 #include <windows.h>
 #include <stdio.h>
@@ -54,7 +64,7 @@ int main(void)
    //screen_buffer[0].Char.UnicodeChar = L'X';
    //screen_buffer[0].Attributes = 0x50;
 
-   Draw_Line( (int*)screen_buffer, 2, 1, 10, L'_', 0x50);
+   Draw_Line( (int*)screen_buffer, XYPos(2, 1), 10, L'_', 0x50);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {
