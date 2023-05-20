@@ -1,4 +1,5 @@
 ﻿extern "C" int Make_Sum(int value_1, int value_2);
+//extern "C" void Draw_Line(screen_buffer, 2, 1, 10, L'_', 0x50);
 
 #include <windows.h>
 #include <stdio.h>
@@ -50,8 +51,10 @@ int main(void)
 
    // Copy from the temporary buffer to the new screen buffer.
 
-   screen_buffer[0].Char.UnicodeChar = L'X';
-   screen_buffer[0].Attributes = 0x50;
+   //screen_buffer[0].Char.UnicodeChar = L'X';
+   //screen_buffer[0].Attributes = 0x50;
+
+   //Draw_Line(screen_buffer, 2, 1, 10, L'_', 0x50);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {
