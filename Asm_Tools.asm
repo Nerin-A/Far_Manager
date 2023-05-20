@@ -34,11 +34,8 @@ Draw_Line proc
 	mov rdi, rcx
 	mov eax, r9d
 
-_show_symbol:
-	stosd
-
-	dec r8
-	jnz _show_symbol
+	mov rcx, r8
+	rep stosd
 
 	ret
 
