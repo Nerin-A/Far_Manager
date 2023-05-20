@@ -23,6 +23,7 @@ Draw_Line proc
 ; R9 = symbol
 ; Return RAX
 
+mov [rcx], r9
 	ret
 
 Draw_Line endp
