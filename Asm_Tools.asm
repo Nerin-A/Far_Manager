@@ -26,11 +26,20 @@ Draw_Line_Horizontal proc
 	push rcx
 	push rdi
 
-	; 1. Calculate the address to output a character: addres_offset = (pos.Y * screen_width + pos.X) * 4 (4 bytes for 1 symbol)
+	; 1. Calculate the address to output a character: addres_offset = (x_y_pos.Y_Pos * x_y_pos.Screen_width + x_y_pos.X_Pos) * 4 (4 bytes for 1 symbol)
+	; 1.1 Calculating x_y_pos.Y * x_y_pos.Screen_Width
+	mov rax, edx
+	shr rax, 16 ; AX = x_y_pos.Y_Pos
+	movzx rax, ax ; RAX = AX = x_y_pos.Y_Pos
 
 
+	mov rbx, edx
+	shr rbx, 32 ; BX = x_y_pos.Screen_width
+	movzx rbx, bx ; RBX = BX = x_y_pos.Screen_width
 
-	; 2. Showing symbols
+	imul rax, rbx ; RAX = RAX * RBX = x_y_pos.Y_Pos * x_y_pos.Screen_Width
+
+	; 2. Show symbols
 	mov rdi, rcx
 	mov eax, r9d
 	mov rcx, r8
