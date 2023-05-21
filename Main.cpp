@@ -15,7 +15,7 @@ struct XYPos
 };
 
 extern "C" int Make_Sum(int value_1, int value_2);
-extern "C" void Draw_Line_Horizontal(CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
+extern "C" void Draw_Line_Horizontal(CHAR_INFO* screen_buffer, XYPos pos, CHAR_INFO symbol);
 
 //------------------------------------------------------------------------------------------------------------
 int main(void)
@@ -71,9 +71,9 @@ int main(void)
    CHAR_INFO symbol{};
    symbol.Char.UnicodeChar = L'-';
    symbol.Attributes = 0x50;
-   XYPos x_y_pos(2, 1, );
+   XYPos x_y_pos(2, 1, screen_buffer_info.dwSize.X, 10);
 
-   Draw_Line_Horizontal(screen_buffer, x_y_pos, 10, symbol);
+   Draw_Line_Horizontal(screen_buffer, x_y_pos, symbol);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {
