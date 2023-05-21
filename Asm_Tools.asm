@@ -89,6 +89,9 @@ Show_Colors proc
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
+	mov rax, r8
+
+	stosd
 
 	ret
 
