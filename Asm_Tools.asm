@@ -41,11 +41,15 @@ Draw_Line_Horizontal proc
 
 	; 1.2 Add x_y_pos.X_Pos to RAX
 	movzx rbx, dx ; RBX = DX = x_y_pos.X_Pos
-	add rax, rbx ; RAX = x_y_pos.Y_Pos * x_y_pos.Screen_Width + x_y_pos.X_Pos
+	add rax, rbx ; RAX = x_y_pos.Y_Pos * x_y_pos.Screen_Width + x_y_pos.X_Pos = offset in symbols. 
+	
+	; 1.3 We still need offset in bytes. Every symbol is 4 bytes so we have to multiply by 4
+	shl rax, 2 ; RAX = RAX * 4 = addres_offset
 
+	mov rdi, rcx ; RDI = screen_buffer
+	add rdi, rax ; RDI = screen_buffer + addres_offset
 
 	; 2. Show symbols
-	mov rdi, rcx
 	mov eax, r9d
 	mov rcx, r8
 
