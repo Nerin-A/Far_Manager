@@ -89,8 +89,14 @@ Show_Colors proc
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
-	mov rax, r8
+	mov rax, r8 ; RAX = EAX = symbol
 
+; 0 & 0 = 0
+; 0 & 1 = 0
+; 1 & 0 = 0
+; 1 & 1 = 1
+
+	and rax, 0ffffh ; set first 2 bytes of RAX to 1111 1111 and rest is zeroed
 	stosd
 
 	ret
