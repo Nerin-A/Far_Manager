@@ -89,6 +89,9 @@ Show_Colors proc
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
+	mov r10, rdi
+	; R11
+
 	mov rax, r8 ; RAX = EAX = symbol
 
 ; 0 & 0 = 0
@@ -109,6 +112,9 @@ _1:
 	add rax, 010000h ; A binary unit shifted 16 bits to the left.
 
 	loop _1
+
+	add r10, r11
+	mov rdi, r10
 
 	dec rbx
 	jnz _0
