@@ -23,6 +23,7 @@ Draw_Line_Horizontal proc
 ; Return RAX
 	
 	push rax
+	push rbx
 	push rcx
 	push rdi
 
@@ -31,7 +32,6 @@ Draw_Line_Horizontal proc
 	mov rax, rdx
 	shr rax, 16 ; AX = x_y_pos.Y_Pos
 	movzx rax, ax ; RAX = AX = x_y_pos.Y_Pos
-
 
 	mov rbx, rdx
 	shr rbx, 32 ; BX = x_y_pos.Screen_width
@@ -58,6 +58,7 @@ Draw_Line_Horizontal proc
 
 	pop rdi
 	pop rcx
+	pop rbx
 	pop rax
 
 	ret
