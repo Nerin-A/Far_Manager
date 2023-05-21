@@ -13,7 +13,7 @@ struct XYPos
 };
 
 extern "C" int Make_Sum(int value_1, int value_2);
-extern "C" void Draw_Line(CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
+extern "C" void Draw_Horizontal_Line(CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
 
 //------------------------------------------------------------------------------------------------------------
 int main(void)
@@ -71,7 +71,7 @@ int main(void)
    symbol.Attributes = 0x50;
    XYPos x_y_pos(2, 1);
 
-   Draw_Line(screen_buffer, x_y_pos, 10, symbol);
+   Draw_Horizontal_Line(screen_buffer, x_y_pos, 10, symbol);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {

@@ -14,8 +14,8 @@ Make_Sum proc
 
 Make_Sum endp
 ;------------------------------------------------------------------------------------------------------------
-Draw_Line proc
-; extern "C" void Draw_Line(CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
+Draw_Horizontal_Line proc
+; extern "C" void Draw_Horizontal_Line (CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = pos
@@ -40,6 +40,6 @@ Draw_Line proc
 
 	ret
 
-Draw_Line endp
+Draw_Horizontal_Line endp
 ;------------------------------------------------------------------------------------------------------------
 end
