@@ -3,13 +3,15 @@
 
 struct XYPos
 {
-   XYPos(short x_pos, short y_pos)
-      : X_Pos(x_pos), Y_Pos(y_pos)
+   XYPos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length)
+      : X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Length(length)
    {
    }
 
-   short X_Pos;
-   short Y_Pos;
+   unsigned short X_Pos;
+   unsigned short Y_Pos;
+   unsigned short Screen_Width;
+   unsigned short Length;
 };
 
 extern "C" int Make_Sum(int value_1, int value_2);
@@ -69,7 +71,7 @@ int main(void)
    CHAR_INFO symbol{};
    symbol.Char.UnicodeChar = L'-';
    symbol.Attributes = 0x50;
-   XYPos x_y_pos(2, 1);
+   XYPos x_y_pos(2, 1, );
 
    Draw_Line_Horizontal(screen_buffer, x_y_pos, 10, symbol);
 
