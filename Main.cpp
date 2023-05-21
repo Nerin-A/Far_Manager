@@ -84,7 +84,7 @@ int main(void)
       return 1;
    }
 
-   Sleep(5000);
+   Sleep(20000);
 
    // Restore the original active screen buffer.
 

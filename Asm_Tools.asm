@@ -98,13 +98,20 @@ Show_Colors proc
 
 	and rax, 0ffffh ; set first 2 bytes of RAX to 1111 1111 and rest is zeroed
 
-	mov rcx, 256
+	mov rbx, 16
+
+_0:
+
+	mov rcx, 16
 
 _1:
 	stosd
 	add rax, 010000h ; A binary unit shifted 16 bits to the left.
 
 	loop _1
+
+	dec rbx
+	jnz _0
 
 	ret
 
