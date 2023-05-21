@@ -47,7 +47,7 @@ Get_Pos_Address proc
 Get_Pos_Address endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Line_Horizontal proc
-; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos pos, CHAR_INFO symbol);
+; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = pos
@@ -59,7 +59,8 @@ Draw_Line_Horizontal proc
 	push rcx
 	push rdi
 
-	call Get_Pos_Address
+	; 1. Calculate the address to output a character
+	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
 	; 2. Show symbols
 	mov eax, r8d
@@ -84,6 +85,9 @@ Show_Colors proc
 ; RDX = pos
 ; R8 = symbol
 ; Return NONE
+
+	; 1. Calculate the address to output a character
+	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
 
 	ret
