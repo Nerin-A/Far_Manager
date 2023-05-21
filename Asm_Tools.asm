@@ -14,8 +14,8 @@ Make_Sum proc
 
 Make_Sum endp
 ;------------------------------------------------------------------------------------------------------------
-Draw_Horizontal_Line proc
-; extern "C" void Draw_Horizontal_Line (CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
+Draw_Line_Horizontal proc
+; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos pos, int length, CHAR_INFO symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = pos
@@ -27,7 +27,11 @@ Draw_Horizontal_Line proc
 	push rcx
 	push rdi
 
-	; Showing symbols
+	; 1. Calculate the address to output a character: addres_offset = (pos.Y * screen_width + pos.X) * 4 (4 bytes for 1 symbol)
+
+
+
+	; 2. Showing symbols
 	mov rdi, rcx
 	mov eax, r9d
 	mov rcx, r8
@@ -40,6 +44,6 @@ Draw_Horizontal_Line proc
 
 	ret
 
-Draw_Horizontal_Line endp
+Draw_Line_Horizontal endp
 ;------------------------------------------------------------------------------------------------------------
 end
