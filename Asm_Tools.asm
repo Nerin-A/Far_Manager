@@ -79,7 +79,7 @@ Draw_Line_Horizontal proc
 Draw_Line_Horizontal endp
 ;------------------------------------------------------------------------------------------------------------
 Show_Colors proc
-; extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
+; extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = pos
@@ -90,7 +90,12 @@ Show_Colors proc
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
 	mov r10, rdi
-	; R11
+
+	; 2. Output position correction calculation
+	mov r11, rdx
+	shr r11, 32 ; R11 = x_y_pos
+	movzx r11, r11w ; R11 = R11w = x_y_pos.Screen_Width
+	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
 
 	mov rax, r8 ; RAX = EAX = symbol
 
