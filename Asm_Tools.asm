@@ -50,9 +50,10 @@ Draw_Line_Horizontal proc
 	add rdi, rax ; RDI = screen_buffer + addres_offset
 
 	; 2. Show symbols
-	mov eax, r9d
-	mov rcx, r8
-
+	mov eax, r8d
+	mov rcx, rdx
+	shr rcx, 48 ; RCX = CX = x_y_pos.Length
+	
 	rep stosd
 
 	pop rdi
