@@ -97,20 +97,20 @@ Show_Colors proc
 	movzx r11, r11w ; R11 = R11w = x_y_pos.Screen_Width
 	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
 
+	; 3. Preparing cycles
 	mov rax, r8 ; RAX = EAX = symbol
 
-; 0 & 0 = 0
-; 0 & 1 = 0
-; 1 & 0 = 0
-; 1 & 1 = 1
+	; 3.1 Logical AND result
+	; 0 & 0 = 0
+	; 0 & 1 = 0
+	; 1 & 0 = 0
+	; 1 & 1 = 1
 
 	and rax, 0ffffh ; set first 2 bytes of RAX to 1111 1111 and rest is zeroed
-
 	mov rbx, 16
 
 _0:
-
-	mov rcx, 16
+	mov cl, 16
 
 _1:
 	stosd
