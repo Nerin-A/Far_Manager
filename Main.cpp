@@ -1,6 +1,7 @@
 ﻿#include <windows.h>
 #include <stdio.h>
 
+//------------------------------------------------------------------------------------------------------------
 struct XYPos
 {
    XYPos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length)
@@ -13,10 +14,10 @@ struct XYPos
    unsigned short Screen_Width;
    unsigned short Length;
 };
-
+//------------------------------------------------------------------------------------------------------------
 extern "C" int Make_Sum(int value_1, int value_2);
 extern "C" void Draw_Line_Horizontal(CHAR_INFO* screen_buffer, XYPos pos, CHAR_INFO symbol);
-
+extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
 //------------------------------------------------------------------------------------------------------------
 int main(void)
 {
@@ -69,11 +70,13 @@ int main(void)
    //screen_buffer[0].Attributes = 0x50;
 
    CHAR_INFO symbol{};
-   symbol.Char.UnicodeChar = L'-';
+   symbol.Char.UnicodeChar = L'X';
    symbol.Attributes = 0x50;
    XYPos x_y_pos(2, 1, screen_buffer_info.dwSize.X, 10);
 
-   Draw_Line_Horizontal(screen_buffer, x_y_pos, symbol);
+   //Draw_Line_Horizontal(screen_buffer, x_y_pos, symbol);
+
+   Show_Colors(screen_buffer, x_y_pos, symbol);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {

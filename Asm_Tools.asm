@@ -20,7 +20,7 @@ Draw_Line_Horizontal proc
 ; RCX = screen_buffer
 ; RDX = pos
 ; R8 = symbol
-; Return RAX
+; Return NONE
 	
 	push rax
 	push rbx
@@ -64,5 +64,18 @@ Draw_Line_Horizontal proc
 	ret
 
 Draw_Line_Horizontal endp
+;------------------------------------------------------------------------------------------------------------
+Show_Colors proc
+; extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
+; Parameters:
+; RCX = screen_buffer
+; RDX = pos
+; R8 = symbol
+; Return NONE
+
+
+	ret
+
+Show_Colors endp
 ;------------------------------------------------------------------------------------------------------------
 end
