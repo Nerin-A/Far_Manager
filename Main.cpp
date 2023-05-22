@@ -53,20 +53,11 @@ int main(void)
    short half_width = screen_buffer_info.dwSize.X / 2;
 
    APanel left_panel(0, 0, half_width, screen_buffer_info.dwSize.Y - 2);
-   APanel right_panel(half_width, 0, half_width, screen_buffer_info.dwSize.Y - 2);
+   //APanel right_panel(half_width, 0, half_width, screen_buffer_info.dwSize.Y - 2);
 
    left_panel.Draw();
-   right_panel.Draw();
+   //right_panel.Draw();
 
-   CHAR_INFO symbol{};
-   symbol.Char.UnicodeChar = L'X';
-   symbol.Attributes = 0x1b;
-   XYPos x_y_pos(2, 1, screen_buffer_info.dwSize.X, 10);
-
-   //Draw_Line_Horizontal(screen_buffer, x_y_pos, symbol);
-   Draw_Line_Vertical(screen_buffer, x_y_pos, symbol);
-
-   //Show_Colors(screen_buffer, x_y_pos, symbol);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {
