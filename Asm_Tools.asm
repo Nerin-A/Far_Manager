@@ -100,7 +100,15 @@ Draw_Line_Vertical proc
 
 	; 3. Prepare the cycle counter
 	mov rcx, rdx
-	shr rcx, 48
+	shr rcx, 48 ; RCX = CX = x_y_pos.Length
+
+	mov eax, r8d ; EAX = symbol
+
+_1:
+	stosd ; Displaying a symbol
+	add rdi, r11
+
+	loop _1
 
 	ret
 
