@@ -51,6 +51,10 @@ int main(void)
    //screen_buffer[0].Char.UnicodeChar = L'X';
    //screen_buffer[0].Attributes = 0x50;
 
+   APanel left_panel;
+
+   left_panel.Draw();
+
    CHAR_INFO symbol{};
    symbol.Char.UnicodeChar = L'X';
    symbol.Attributes = 0x1b;
