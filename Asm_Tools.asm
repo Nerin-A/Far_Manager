@@ -86,6 +86,12 @@ Draw_Line_Vertical proc
 ; R8 = symbol
 ; Return NONE
 
+	push rax
+	push rcx
+	push rdi
+	push r10
+	push r11
+
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
@@ -109,6 +115,12 @@ _1:
 	add rdi, r11
 
 	loop _1
+
+	pop r11
+	pop r10
+	pop rdi
+	pop rcx
+	pop rax
 
 	ret
 
