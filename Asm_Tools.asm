@@ -17,7 +17,7 @@ Make_Sum endp
 Get_Pos_Address proc
 ; Parameters:
 ; RCX = screen_buffer
-; RDX = pos
+; RDX = x_y_pos
 ; Return RDI
 
 	; 1. Calculate the address to output a character: addres_offset = (x_y_pos.Y_Pos * x_y_pos.Screen_width + x_y_pos.X_Pos) * 4 (4 bytes for 1 symbol)
@@ -50,7 +50,7 @@ Draw_Line_Horizontal proc
 ; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 ; Parameters:
 ; RCX = screen_buffer
-; RDX = pos
+; RDX = x_y_pos
 ; R8 = symbol
 ; Return NONE
 	
@@ -79,8 +79,24 @@ Draw_Line_Horizontal proc
 Draw_Line_Horizontal endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Line_Vertical proc
-;extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
+;extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
+; Parameters:
+; RCX = screen_buffer
+; RDX = x_y_pos
+; R8 = symbol
+; Return NONE
 
+	; 1. Calculate the address to output a character
+	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
+
+	mov r10, rdi
+
+	; 2. Output position correction calculation
+	mov r11, rdx
+	shr r11, 32 ; R11 = x_y_pos
+	movzx r11, r11w ; R11 = R11w = x_y_pos.Screen_Width
+	dec r11
+	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
 
 	ret
 
@@ -90,7 +106,7 @@ Show_Colors proc
 ; extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 ; Parameters:
 ; RCX = screen_buffer
-; RDX = pos
+; RDX = x_y_pos
 ; R8 = symbol
 ; Return NONE
 
