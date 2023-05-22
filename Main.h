@@ -22,6 +22,8 @@ extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO 
 class APanel 
 {
 public:
+   APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width, unsigned short height);
+
    void Draw();
 
    unsigned short X_Pos, Y_Pos;

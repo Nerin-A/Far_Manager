@@ -51,9 +51,13 @@ int main(void)
    //screen_buffer[0].Char.UnicodeChar = L'X';
    //screen_buffer[0].Attributes = 0x50;
 
-   APanel left_panel;
+   short half_width = screen_buffer_info.dwSize.X / 2;
+
+   APanel left_panel(0, 0, half_width, screen_buffer_info.dwSize.Y - 2);
+   APanel right_panel(half_width, 0, half_width, screen_buffer_info.dwSize.Y - 2);
 
    left_panel.Draw();
+   right_panel.Draw();
 
    CHAR_INFO symbol{};
    symbol.Char.UnicodeChar = L'X';
