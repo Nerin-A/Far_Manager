@@ -16,6 +16,9 @@
     <Filter Include="Main">
       <UniqueIdentifier>{ddad3c48-cbe4-4d94-870c-1cff4b6eb790}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Panel">
+      <UniqueIdentifier>{d4c28c1b-96b3-4784-8566-443db5a331b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Asm_Tools.asm">
@@ -26,10 +29,16 @@
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Panel.cpp">
+      <Filter>Panel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Panel.h">
+      <Filter>Panel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

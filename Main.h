@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
+#include "Panel.h"
 //------------------------------------------------------------------------------------------------------------
 struct XYPos
 {
@@ -18,15 +19,4 @@ extern "C" int Make_Sum(int value_1, int value_2);
 extern "C" void Draw_Line_Horizontal(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
-//------------------------------------------------------------------------------------------------------------
-class APanel 
-{
-public:
-   APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width, unsigned short height);
-
-   void Draw();
-
-   unsigned short X_Pos, Y_Pos;
-   unsigned short Width, Height;
-};
 //------------------------------------------------------------------------------------------------------------
