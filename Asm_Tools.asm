@@ -98,6 +98,10 @@ Draw_Line_Vertical proc
 	dec r11
 	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
 
+	; 3. Prepare the cycle counter
+	mov rcx, rdx
+	shr rcx, 48
+
 	ret
 
 Draw_Line_Vertical endp
