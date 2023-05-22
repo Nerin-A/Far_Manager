@@ -16,7 +16,8 @@ struct XYPos
 };
 //------------------------------------------------------------------------------------------------------------
 extern "C" int Make_Sum(int value_1, int value_2);
-extern "C" void Draw_Line_Horizontal(CHAR_INFO* screen_buffer, XYPos pos, CHAR_INFO symbol);
+extern "C" void Draw_Line_Horizontal(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
+extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
 extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
 //------------------------------------------------------------------------------------------------------------
 int main(void)
@@ -75,8 +76,9 @@ int main(void)
    XYPos x_y_pos(2, 1, screen_buffer_info.dwSize.X, 10);
 
    //Draw_Line_Horizontal(screen_buffer, x_y_pos, symbol);
+   Draw_Line_Vertical(screen_buffer, x_y_pos, symbol);
 
-   Show_Colors(screen_buffer, x_y_pos, symbol);
+   //Show_Colors(screen_buffer, x_y_pos, symbol);
 
    if (! WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
    {
