@@ -78,6 +78,14 @@ Draw_Line_Horizontal proc
 
 Draw_Line_Horizontal endp
 ;------------------------------------------------------------------------------------------------------------
+Draw_Line_Vertical proc
+;extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos pos, CHAR_INFO symbol);
+
+
+	ret
+
+Draw_Line_Vertical endp
+;------------------------------------------------------------------------------------------------------------
 Show_Colors proc
 ; extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 ; Parameters:
