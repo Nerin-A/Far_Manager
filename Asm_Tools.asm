@@ -109,6 +109,14 @@ Show_Colors proc
 	and rax, 0ffffh ; set first 2 bytes of RAX to 1111 1111 and rest is zeroed
 	mov rbx, 16
 
+	xor rcx, rcx ; RCX = 0
+
+	; 3.1 XOR result
+	; 0 XOR 0 = 0
+	; 0 XOR 1 = 1
+	; 1 XOR 0 = 1
+	; 1 XOR 1 = 0
+
 _0:
 	mov cl, 16
 
