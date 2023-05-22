@@ -95,7 +95,7 @@ Draw_Line_Vertical proc
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
-	mov r10, rdi
+	;mov r10, rdi
 
 	; 2. Output position correction calculation
 	mov r11, rdx
