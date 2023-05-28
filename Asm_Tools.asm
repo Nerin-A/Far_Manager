@@ -117,6 +117,7 @@ Draw_Line_Vertical proc
 
 	stosd
 
+	sub rdi, 4
 
 	; 3. Output position correction calculation
 	mov r11, rdx

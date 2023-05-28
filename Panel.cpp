@@ -20,7 +20,7 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 void APanel::Draw()
 {
 	//ASymbol vertical_symbol();
-	XYPos vertical_pos(0, 1, Screen_Width, Height - 2);
+	//XYPos vertical_pos(0, 1, Screen_Width, Height - 2);
 
 	//horizontal_symbol.Char.UnicodeChar = L'═';
 	//horizontal_symbol.Attributes = 0x1b;
@@ -50,21 +50,27 @@ void APanel::Draw()
 		Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
 	}
 
-	//// 2. Vertical lines
-	//// 2.1 Left line
-	//Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+	// 2. Vertical lines
+	// 2.1 Left line
+	{
+		ASymbol vertical_symbol(L'║', 0x1b, L'║', L'║');
+		XYPos vertical_pos(0, 1, Screen_Width, Height - 2);
+		Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+	}
 
-	//// 2.2 Right line
-	//vertical_pos.X_Pos = Width - 1;
-	//Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+	// 2.2 Middle line
+	{
+		ASymbol vertical_symbol(L'║', 0x1b, L'║', L'║');
+		XYPos vertical_pos(Width / 2, 1, Screen_Width, Height - 4);
+		Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+	}
 
-	//// 2.3 Middle line
-	//vertical_pos.X_Pos = Width / 2;
-	//vertical_pos.Length -= 2;
-	//Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
-
-
-
+	// 2.3 Right line
+	{
+		ASymbol vertical_symbol(L'║', 0x1b, L'║', L'║');
+		XYPos vertical_pos(Width - 1, 1, Screen_Width, Height - 2);
+		Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+	}
 
 	//Show_Colors(Screen_Buffer, x_y_pos, symbol);
 }
