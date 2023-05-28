@@ -77,6 +77,13 @@ Draw_Line_Horizontal proc
 	
 	rep stosd
 
+	; 4. Output the last symbol
+	mov rbx, r8
+	shr rbx, 48	; RBX = BX = symbol.Last_Symbol
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.Last_Symbol)
+
+	stosd
+
 	pop rdi
 	pop rcx
 	pop rbx
