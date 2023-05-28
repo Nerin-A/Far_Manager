@@ -94,7 +94,7 @@ Draw_Line_Horizontal proc
 Draw_Line_Horizontal endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Line_Vertical proc
-;extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
+;extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos x_y_pos, ASymbol symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = x_y_pos
@@ -104,22 +104,28 @@ Draw_Line_Vertical proc
 	push rax
 	push rcx
 	push rdi
-	push r10
 	push r11
 
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
-	;mov r10, rdi
+	; 2. Output the first symbol
+	mov eax, r8d
+	mov rbx, r8
+	shr rbx, 32	; RBX = EBX = (symbol.First_Symbol, symbol.Last_Symbol)
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.First_Symbol)
 
-	; 2. Output position correction calculation
+	stosd
+
+
+	; 3. Output position correction calculation
 	mov r11, rdx
 	shr r11, 32 ; R11 = x_y_pos
 	movzx r11, r11w ; R11 = R11w = x_y_pos.Screen_Width
 	dec r11
 	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
 
-	; 3. Prepare the cycle counter
+	; 4. Prepare the cycle counter
 	mov rcx, rdx
 	shr rcx, 48 ; RCX = CX = x_y_pos.Length
 
@@ -131,8 +137,14 @@ _1:
 
 	loop _1
 
+	; 5. Output the last symbol
+	mov rbx, r8
+	shr rbx, 48	; RBX = BX = symbol.Last_Symbol
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.Last_Symbol)
+
+	stosd
+
 	pop r11
-	pop r10
 	pop rdi
 	pop rcx
 	pop rax
