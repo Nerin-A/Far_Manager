@@ -70,6 +70,24 @@ Draw_Start_Symbol proc
 
 Draw_Start_Symbol endp
 ;------------------------------------------------------------------------------------------------------------
+Draw_End_Symbol proc
+;Output the last symbol
+; Parameters:
+; EAX = symbol.Attributes, symbol.Main_Symbol
+; RDI = current address in screen_buffer
+; R8 = symbol
+; Return NONE
+
+	mov rbx, r8
+	shr rbx, 48	; RBX = BX = symbol.End_Symbol
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.End_Symbol)
+
+	stosd
+
+	ret
+
+Draw_End_Symbol endp
+;------------------------------------------------------------------------------------------------------------
 Draw_Line_Horizontal proc
 ; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos x_y_pos, ASymbol symbol);
 ; Parameters:
@@ -97,11 +115,7 @@ Draw_Line_Horizontal proc
 	rep stosd
 
 	; 4. Output the last symbol
-	mov rbx, r8
-	shr rbx, 48	; RBX = BX = symbol.End_Symbol
-	mov ax, bx ; EAX = (symbol.Attributes, symbol.End_Symbol)
-
-	stosd
+	call Draw_End_Symbol
 
 	pop rdi
 	pop rcx
@@ -153,11 +167,7 @@ _1:
 	loop _1
 
 	; 5. Output the last symbol
-	mov rbx, r8
-	shr rbx, 48	; RBX = BX = symbol.End_Symbol
-	mov ax, bx ; EAX = (symbol.Attributes, symbol.End_Symbol)
-
-	stosd
+	call Draw_End_Symbol
 
 	pop r11
 	pop rdi
