@@ -19,12 +19,12 @@ struct XYPos
 class ASymbol
 {
 public:
-	ASymbol(wchar_t main_symbol, unsigned short attributes, wchar_t first_symbol, wchar_t last_symbol);
+	ASymbol(wchar_t main_symbol, unsigned short attributes, wchar_t start_symbol, wchar_t end_symbol);
 
 	wchar_t Main_Symbol;
 	unsigned short Attributes;
-	wchar_t First_Symbol;
-	wchar_t Last_Symbol;
+	wchar_t Start_Symbol;
+	wchar_t End_Symbol;
 };
 //------------------------------------------------------------------------------------------------------------
 class APanel

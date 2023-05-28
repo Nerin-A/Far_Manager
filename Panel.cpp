@@ -2,8 +2,8 @@
 
 // ASymbol
 //------------------------------------------------------------------------------------------------------------
-ASymbol::ASymbol(wchar_t main_symbol, unsigned short attributes, wchar_t first_symbol, wchar_t last_symbol)
-: Main_Symbol(main_symbol), Attributes(attributes), First_Symbol(first_symbol), Last_Symbol(last_symbol)
+ASymbol::ASymbol(wchar_t main_symbol, unsigned short attributes, wchar_t start_symbol, wchar_t end_symbol)
+: Main_Symbol(main_symbol), Attributes(attributes), Start_Symbol(start_symbol), End_Symbol(end_symbol)
 {
 
 }

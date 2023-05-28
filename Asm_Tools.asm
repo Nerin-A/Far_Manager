@@ -46,6 +46,30 @@ Get_Pos_Address proc
 
 Get_Pos_Address endp
 ;------------------------------------------------------------------------------------------------------------
+Draw_Start_Symbol proc
+;Output the start symbol
+; Parameters:
+; RDI = current address in screen_buffer
+; R8 = symbol
+; Return NONE
+
+	push rax
+	push rbx
+
+	mov eax, r8d
+	mov rbx, r8
+	shr rbx, 32	; RBX = EBX = (symbol.Start_Symbol, symbol.End_Symbol)
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.Start_Symbol)
+
+	stosd
+
+	pop rbx
+	pop rax
+
+	ret
+
+Draw_Start_Symbol endp
+;------------------------------------------------------------------------------------------------------------
 Draw_Line_Horizontal proc
 ; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos x_y_pos, ASymbol symbol);
 ; Parameters:
@@ -63,12 +87,7 @@ Draw_Line_Horizontal proc
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
 	; 2. Output the start symbol
-	mov eax, r8d
-	mov rbx, r8
-	shr rbx, 32	; RBX = EBX = (symbol.First_Symbol, symbol.Last_Symbol)
-	mov ax, bx ; EAX = (symbol.Attributes, symbol.First_Symbol)
-
-	stosd
+	call Draw_Start_Symbol
 
 	; 3. Show symbol.Main_Symbol
 	mov eax, r8d
@@ -79,8 +98,8 @@ Draw_Line_Horizontal proc
 
 	; 4. Output the last symbol
 	mov rbx, r8
-	shr rbx, 48	; RBX = BX = symbol.Last_Symbol
-	mov ax, bx ; EAX = (symbol.Attributes, symbol.Last_Symbol)
+	shr rbx, 48	; RBX = BX = symbol.End_Symbol
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.End_Symbol)
 
 	stosd
 
@@ -117,12 +136,7 @@ Draw_Line_Vertical proc
 	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
 
 	; 3. Output the first symbol
-	mov eax, r8d
-	mov rbx, r8
-	shr rbx, 32	; RBX = EBX = (symbol.First_Symbol, symbol.Last_Symbol)
-	mov ax, bx ; EAX = (symbol.Attributes, symbol.First_Symbol)
-
-	stosd
+	call Draw_Start_Symbol
 
 	add rdi, r11
 
@@ -140,8 +154,8 @@ _1:
 
 	; 5. Output the last symbol
 	mov rbx, r8
-	shr rbx, 48	; RBX = BX = symbol.Last_Symbol
-	mov ax, bx ; EAX = (symbol.Attributes, symbol.Last_Symbol)
+	shr rbx, 48	; RBX = BX = symbol.End_Symbol
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.End_Symbol)
 
 	stosd
 
