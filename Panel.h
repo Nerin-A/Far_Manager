@@ -16,6 +16,16 @@ struct XYPos
 	unsigned short Length;
 };
 //------------------------------------------------------------------------------------------------------------
+struct SSymbol
+{
+	SSymbol();
+
+	unsigned short Main_Symbol;
+	unsigned short Attribute;
+	unsigned short First_Symbol;
+	unsigned short Last_Symbol;
+};
+//------------------------------------------------------------------------------------------------------------
 class APanel
 {
 public:
