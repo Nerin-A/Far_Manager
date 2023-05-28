@@ -124,6 +124,8 @@ Draw_Line_Vertical proc
 
 	stosd
 
+	add rdi, r11
+
 	; 4. Prepare the cycle counter
 	mov rcx, rdx
 	shr rcx, 48 ; RCX = CX = x_y_pos.Length
