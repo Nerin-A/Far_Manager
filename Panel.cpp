@@ -19,57 +19,49 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 }
 void APanel::Draw()
 {
-	//ASymbol vertical_symbol();
-	//XYPos vertical_pos(0, 1, Screen_Width, Height - 2);
-
-	//horizontal_symbol.Char.UnicodeChar = L'═';
-	//horizontal_symbol.Attributes = 0x1b;
-
-	//vertical_symbol.Char.UnicodeChar = L'║';
-	//vertical_symbol.Attributes = 0x1b;
-
 	// 1. Horizontal lines
 	// 1.1 Upper line
 	{
-		ASymbol horizontal_symbol(L'═', 0x1b, L'╔', L'╗');
-		XYPos horizontal_pos(0, 0, Screen_Width, Width - 2);
-		Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+		ASymbol symbol(L'═', 0x1b, L'╔', L'╗');
+		XYPos position(0, 0, Screen_Width, Width - 2);
+		Draw_Line_Horizontal(Screen_Buffer, position, symbol);
 	}
 
 	// 1.2 Lower line
 	{
-		ASymbol horizontal_symbol(L'═', 0x1b, L'╚', L'╝');
-		XYPos horizontal_pos(0, Height - 1, Screen_Width, Width - 2);
-		Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+		ASymbol symbol(L'═', 0x1b, L'╚', L'╝');
+		XYPos position(0, Height - 1, Screen_Width, Width - 2);
+		Draw_Line_Horizontal(Screen_Buffer, position, symbol);
 	}
 
 	// 2. Vertical lines
 	// 2.1 Left line
 	{
-		ASymbol vertical_symbol(L'║', 0x1b, L'║', L'║');
-		XYPos vertical_pos(0, 1, Screen_Width, Height - 3);
-		Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+		ASymbol symbol(L'║', 0x1b, L'║', L'║');
+		XYPos position(0, 1, Screen_Width, Height - 4);
+		Draw_Line_Vertical(Screen_Buffer, position, symbol);
 	}
 
 	// 2.2 Right line
 	{
-		ASymbol vertical_symbol(L'║', 0x1b, L'║', L'║');
-		XYPos vertical_pos(Width - 1, 1, Screen_Width, Height - 3);
-		Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+		ASymbol symbol(L'║', 0x1b, L'║', L'║');
+		XYPos position(Width - 1, 1, Screen_Width, Height - 4);
+		Draw_Line_Vertical(Screen_Buffer, position, symbol);
 	}
 
-	// 2.3 Middle horizontal line
+	// 3 Middle lines
+	// 3.1 Middle horizontal line
 	{
-		ASymbol horizontal_symbol(L'─', 0x1b, L'╟', L'╢');
-		XYPos horizontal_pos(0, Height - 3, Screen_Width, Width - 2);
-		Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+		ASymbol symbol(L'─', 0x1b, L'╟', L'╢');
+		XYPos position(0, Height - 3, Screen_Width, Width - 2);
+		Draw_Line_Horizontal(Screen_Buffer, position, symbol);
 	}
 
-	// 2.4 Middle vertical line
+	// 3.2 Middle vertical line
 	{
-		ASymbol vertical_symbol(L'║', 0x1b, L'╦', L'╨');
-		XYPos vertical_pos(Width / 2, 0, Screen_Width, Height - 3);
-		Draw_Line_Vertical(Screen_Buffer, vertical_pos, vertical_symbol);
+		ASymbol symbol(L'║', 0x1b, L'╦', L'╨');
+		XYPos position(Width / 2, 0, Screen_Width, Height - 4);
+		Draw_Line_Vertical(Screen_Buffer, position, symbol);
 	}
 
 
