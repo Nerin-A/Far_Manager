@@ -62,7 +62,15 @@ Draw_Line_Horizontal proc
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
-	; 2. Show symbols
+	; 2. Output the start symbol
+	mov eax, r8d
+	mov rbx, r8
+	shr rbx, 32	; RBX = EBX = (symbol.First_Symbol, symbol.Last_Symbol)
+	mov ax, bx ; EAX = (symbol.Attributes, symbol.First_Symbol)
+
+	stosd
+
+	; 3. Show symbol.Main_Symbol
 	mov eax, r8d
 	mov rcx, rdx
 	shr rcx, 48 ; RCX = CX = x_y_pos.Length
