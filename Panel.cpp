@@ -19,16 +19,16 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 }
 void APanel::Draw()
 {
-	ASymbol horizontal_symbol{};
-	ASymbol vertical_symbol{};
+	ASymbol horizontal_symbol(L'═', 0x1b, L'╔', L'╗');
+	//ASymbol vertical_symbol();
 	XYPos horizontal_pos(1, 0, Screen_Width, Width - 2);
 	XYPos vertical_pos(0, 1, Screen_Width, Height - 2);
 
-	horizontal_symbol.Char.UnicodeChar = L'═';
-	horizontal_symbol.Attributes = 0x1b;
+	//horizontal_symbol.Char.UnicodeChar = L'═';
+	//horizontal_symbol.Attributes = 0x1b;
 
-	vertical_symbol.Char.UnicodeChar = L'║';
-	vertical_symbol.Attributes = 0x1b;
+	//vertical_symbol.Char.UnicodeChar = L'║';
+	//vertical_symbol.Attributes = 0x1b;
 
 	// 1. Horizontal lines
 	// 1.1 Upper line
