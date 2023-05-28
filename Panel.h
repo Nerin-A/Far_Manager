@@ -16,14 +16,15 @@ struct XYPos
 	unsigned short Length;
 };
 //------------------------------------------------------------------------------------------------------------
-struct SSymbol
+class ASymbol
 {
-	SSymbol();
+public:
+	ASymbol(wchar_t main_symbol, unsigned short attributes, wchar_t first_symbol, wchar_t last_symbol);
 
-	unsigned short Main_Symbol;
-	unsigned short Attribute;
-	unsigned short First_Symbol;
-	unsigned short Last_Symbol;
+	wchar_t Main_Symbol;
+	unsigned short Attributes;
+	wchar_t First_Symbol;
+	wchar_t Last_Symbol;
 };
 //------------------------------------------------------------------------------------------------------------
 class APanel
@@ -40,7 +41,7 @@ public:
 };
 //------------------------------------------------------------------------------------------------------------
 extern "C" int Make_Sum(int value_1, int value_2);
-extern "C" void Draw_Line_Horizontal(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
+extern "C" void Draw_Line_Horizontal(CHAR_INFO * screen_buffer, XYPos x_y_pos, ASymbol symbol);
 extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 //------------------------------------------------------------------------------------------------------------

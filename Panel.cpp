@@ -1,4 +1,15 @@
 ﻿#include "Panel.h"
+
+// ASymbol
+//------------------------------------------------------------------------------------------------------------
+ASymbol::ASymbol(wchar_t main_symbol, unsigned short attributes, wchar_t first_symbol, wchar_t last_symbol)
+: Main_Symbol(main_symbol), Attributes(attributes), First_Symbol(first_symbol), Last_Symbol(last_symbol)
+{
+
+}
+//------------------------------------------------------------------------------------------------------------
+
+
 // APanel
 //------------------------------------------------------------------------------------------------------------
 APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width, unsigned short height, CHAR_INFO* screen_buffer, unsigned short screen_width)
@@ -8,8 +19,8 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 }
 void APanel::Draw()
 {
-	SSymbol horizontal_symbol{};
-	SSymbol vertical_symbol{};
+	ASymbol horizontal_symbol{};
+	ASymbol vertical_symbol{};
 	XYPos horizontal_pos(1, 0, Screen_Width, Width - 2);
 	XYPos vertical_pos(0, 1, Screen_Width, Height - 2);
 

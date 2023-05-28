@@ -47,7 +47,7 @@ Get_Pos_Address proc
 Get_Pos_Address endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Line_Horizontal proc
-; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
+; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos x_y_pos, ASymbol symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = x_y_pos
