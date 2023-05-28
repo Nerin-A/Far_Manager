@@ -21,7 +21,6 @@ int main(void)
 	}
 
 	// Make the new screen buffer the active screen buffer.
-
 	if (!SetConsoleActiveScreenBuffer(screen_buffer_handle))
 	{
 		printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
@@ -35,7 +34,6 @@ int main(void)
 	}
 
 	screen_buffer_size = (int)screen_buffer_info.dwSize.X * (int)screen_buffer_info.dwSize.Y;
-
 	screen_buffer = new CHAR_INFO[screen_buffer_size];
 	memset(screen_buffer, 0, screen_buffer_size * sizeof(CHAR_INFO));
 
@@ -52,21 +50,19 @@ int main(void)
 	//screen_buffer[0].Attributes = 0x50;
 
 	short half_width = screen_buffer_info.dwSize.X / 2;
-
 	APanel left_panel(0, 0, half_width, screen_buffer_info.dwSize.Y - 2, screen_buffer, screen_buffer_info.dwSize.X);
 	//APanel right_panel(half_width, 0, half_width, screen_buffer_info.dwSize.Y - 2, screen_buffer);
 
 	left_panel.Draw();
 	//right_panel.Draw();
 
-
-	if (!WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &srctWriteRect))
+	if (!WriteConsoleOutput(screen_buffer_handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &screen_buffer_info.srWindow))
 	{
 		printf("WriteConsoleOutput failed - (%d)\n", GetLastError());
 		return 1;
 	}
 
-	Sleep(20 * 1000);
+	Sleep(100 * 1000);
 
 	// Restore the original active screen buffer.
 
