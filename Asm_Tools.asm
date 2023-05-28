@@ -109,22 +109,20 @@ Draw_Line_Vertical proc
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
-	; 2. Output the first symbol
+	; 2. Output position correction calculation
+	mov r11, rdx
+	shr r11, 32 ; R11 = x_y_pos
+	movzx r11, r11w ; R11 = R11w = x_y_pos.Screen_Width
+	dec r11
+	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
+
+	; 3. Output the first symbol
 	mov eax, r8d
 	mov rbx, r8
 	shr rbx, 32	; RBX = EBX = (symbol.First_Symbol, symbol.Last_Symbol)
 	mov ax, bx ; EAX = (symbol.Attributes, symbol.First_Symbol)
 
 	stosd
-
-	sub rdi, 4
-
-	; 3. Output position correction calculation
-	mov r11, rdx
-	shr r11, 32 ; R11 = x_y_pos
-	movzx r11, r11w ; R11 = R11w = x_y_pos.Screen_Width
-	dec r11
-	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
 
 	; 4. Prepare the cycle counter
 	mov rcx, rdx
