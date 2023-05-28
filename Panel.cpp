@@ -19,9 +19,7 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 }
 void APanel::Draw()
 {
-	ASymbol horizontal_symbol(L'═', 0x1b, L'╔', L'╗');
 	//ASymbol vertical_symbol();
-	XYPos horizontal_pos(1, 0, Screen_Width, Width - 2);
 	XYPos vertical_pos(0, 1, Screen_Width, Height - 2);
 
 	//horizontal_symbol.Char.UnicodeChar = L'═';
@@ -32,16 +30,25 @@ void APanel::Draw()
 
 	// 1. Horizontal lines
 	// 1.1 Upper line
-	Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+	{
+		ASymbol horizontal_symbol(L'═', 0x1b, L'╔', L'╗');
+		XYPos horizontal_pos(0, 0, Screen_Width, Width - 2);
+		Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+	}
 
-	//// 1.2 Lower line
-	//horizontal_pos.Y_Pos = Height - 1;
-	//Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+	// 1.2 Middle line
+	{
+		ASymbol horizontal_symbol(L'─', 0x1b, L'╟', L'╢');
+		XYPos horizontal_pos(0, Height - 3, Screen_Width, Width - 2);
+		Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+	}
 
-	//// 1.3 Middle line
-	//horizontal_symbol.Char.UnicodeChar = L'─';
-	//horizontal_pos.Y_Pos = Height - 3;
-	//Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+	// 1.3 Lower line
+	{
+		ASymbol horizontal_symbol(L'═', 0x1b, L'╚', L'╝');
+		XYPos horizontal_pos(0, Height - 1, Screen_Width, Width - 2);
+		Draw_Line_Horizontal(Screen_Buffer, horizontal_pos, horizontal_symbol);
+	}
 
 	//// 2. Vertical lines
 	//// 2.1 Left line
