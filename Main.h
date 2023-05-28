@@ -1,2 +1,4 @@
-﻿#include <stdio.h>
+﻿#pragma once
+
+#include <stdio.h>
 #include "Panel.h"

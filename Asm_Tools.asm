@@ -20,7 +20,7 @@ Get_Pos_Address proc
 ; RDX = x_y_pos
 ; Return RDI
 
-	; 1. Calculate the address to output a character: addres_offset = (x_y_pos.Y_Pos * x_y_pos.Screen_width + x_y_pos.X_Pos) * 4 (4 bytes for 1 symbol)
+	; 1. Calculate the address to output a character: address_offset = (x_y_pos.Y_Pos * x_y_pos.Screen_width + x_y_pos.X_Pos) * 4 (4 bytes for 1 symbol)
 	; 1.1 Calculating x_y_pos.Y * x_y_pos.Screen_Width
 	mov rax, rdx
 	shr rax, 16 ; AX = x_y_pos.Y_Pos
@@ -37,10 +37,10 @@ Get_Pos_Address proc
 	add rax, rbx ; RAX = x_y_pos.Y_Pos * x_y_pos.Screen_Width + x_y_pos.X_Pos = offset in symbols. 
 	
 	; 1.3 We still need offset in bytes. Every symbol is 4 bytes so we have to multiply by 4
-	shl rax, 2 ; RAX = RAX * 4 = addres_offset
+	shl rax, 2 ; RAX = RAX * 4 = address_offset
 
 	mov rdi, rcx ; RDI = screen_buffer
-	add rdi, rax ; RDI = screen_buffer + addres_offset
+	add rdi, rax ; RDI = screen_buffer + address_offset
 
 	ret
 
