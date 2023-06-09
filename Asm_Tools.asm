@@ -114,7 +114,7 @@ Draw_Line_Horizontal proc
 	
 	rep stosd
 
-	; 4. Output the last symbol
+	; 4. Output the last symbol 
 	call Draw_End_Symbol
 
 	pop rdi

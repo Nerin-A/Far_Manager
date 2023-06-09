@@ -19,6 +19,8 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 }
 void APanel::Draw()
 {
+	Clear_Area(Screen_Buffer, position, symbol);
+
 	// 1. Horizontal lines
 	// 1.1 Upper line
 	{
