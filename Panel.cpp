@@ -38,6 +38,7 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 {
 
 }
+//------------------------------------------------------------------------------------------------------------
 void APanel::Draw()
 {
 	ASymbol symbol(L' ', 0x1b, L' ', L' ');

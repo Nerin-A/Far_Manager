@@ -250,4 +250,44 @@ _1:
 
 Show_Colors endp
 ;------------------------------------------------------------------------------------------------------------
+Clear_Area proc
+; extern "C" void Clear_Area(CHAR_INFO* screen_buffer, SArea_Pos area_pos, ASymbol symbol);
+; Parameters:
+; RCX = screen_buffer
+; RDX = area_pos
+; R8 = symbol
+; Return NONE
+
+	; 1. Calculate the address to output a character
+	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
+
+	; 2. Output position correction calculation
+	mov r11, rdx
+	shr r11, 32 ; R11 = x_y_pos
+	movzx r11, r11w ; R11 = R11w = x_y_pos.Screen_Width
+	shl r11, 2 ; R11 = x_y_pos.Screen_Width * 4 = Screen Width in bytes
+
+	; 3. Preparing cycles
+	mov rax, r8 ; RAX = EAX = symbol
+
+	and rax, 0ffffh ; set first 2 bytes of RAX to 1111 1111 and rest is zeroed
+	mov rbx, 16
+
+	xor rcx, rcx ; RCX = 0
+
+_0:
+	mov cl, 16
+	rep stosd
+
+	add r10, r11
+	mov rdi, r10
+
+	dec rbx
+	jnz _0
+
+
+	ret
+
+Clear_Area endp
+;------------------------------------------------------------------------------------------------------------
 end
