@@ -262,10 +262,13 @@ Clear_Area proc
 	push rbx
 	push rcx
 	push rdi
+	push r10
 	push r11
 
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
+
+	mov r10, rdi
 
 	; 2. Output position correction calculation
 	mov r11, rdx
@@ -276,7 +279,6 @@ Clear_Area proc
 	; 3. Preparing cycles
 	mov rax, r8 ; RAX = EAX = symbol
 
-	and rax, 0ffffh ; set first 2 bytes of RAX to 1111 1111 and rest is zeroed
 
 	mov rbx, rdx
 	shr rbx, 48 ; BH = area_pos.Height, BL = area_pos.Width
@@ -294,6 +296,7 @@ _0:
 	jnz _0
 
 	pop r11
+	pop r10
 	pop rdi
 	pop rcx
 	pop rbx
