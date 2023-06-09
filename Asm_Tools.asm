@@ -258,6 +258,12 @@ Clear_Area proc
 ; R8 = symbol
 ; Return NONE
 
+	push rax
+	push rbx
+	push rcx
+	push rdi
+	push r11
+
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
@@ -287,6 +293,11 @@ _0:
 	dec bh
 	jnz _0
 
+	pop r11
+	pop rdi
+	pop rcx
+	pop rbx
+	pop rax
 
 	ret
 
