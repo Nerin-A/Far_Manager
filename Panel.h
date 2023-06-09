@@ -5,10 +5,7 @@
 //------------------------------------------------------------------------------------------------------------
 struct XYPos
 {
-	XYPos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length)
-		: X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Length(length)
-	{
-	}
+	XYPos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length);
 
 	unsigned short X_Pos;
 	unsigned short Y_Pos;
@@ -18,10 +15,7 @@ struct XYPos
 //------------------------------------------------------------------------------------------------------------
 struct SArea_Pos
 {
-	SArea_Pos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned char width, unsigned char height)
-		: X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Width(width), Height(height)
-	{
-	}
+	SArea_Pos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned char width, unsigned char height);
 
 	unsigned short X_Pos;
 	unsigned short Y_Pos;
