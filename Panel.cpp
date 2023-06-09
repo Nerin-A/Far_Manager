@@ -40,7 +40,9 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 }
 void APanel::Draw()
 {
-	Clear_Area(Screen_Buffer, position, symbol);
+	ASymbol symbol(L' ', 0x1b, L' ', L' ');
+	SArea_Pos area_pos(1, 1, Screen_Width, Width - 2, Height - 2);
+	Clear_Area(Screen_Buffer, area_pos, symbol);
 
 	// 1. Horizontal lines
 	// 1.1 Upper line
