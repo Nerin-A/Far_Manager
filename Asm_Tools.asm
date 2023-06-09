@@ -271,18 +271,20 @@ Clear_Area proc
 	mov rax, r8 ; RAX = EAX = symbol
 
 	and rax, 0ffffh ; set first 2 bytes of RAX to 1111 1111 and rest is zeroed
-	mov rbx, 16
+
+	mov rbx, rdx
+	shr rbx, 48 ; BH = area_pos.Height, BL = area_pos.Width
 
 	xor rcx, rcx ; RCX = 0
 
 _0:
-	mov cl, 16
+	mov cl, bl
 	rep stosd
 
 	add r10, r11
 	mov rdi, r10
 
-	dec rbx
+	dec bh
 	jnz _0
 
 
