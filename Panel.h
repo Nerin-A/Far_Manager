@@ -6,7 +6,7 @@
 struct XYPos
 {
 	XYPos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length)
-	: X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Length(length)
+		: X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Length(length)
 	{
 	}
 
@@ -14,6 +14,19 @@ struct XYPos
 	unsigned short Y_Pos;
 	unsigned short Screen_Width;
 	unsigned short Length;
+};
+//------------------------------------------------------------------------------------------------------------
+struct SArea_Pos
+{
+	SArea_Pos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned char width, unsigned char height)
+		: X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Width(width), Height(height)
+	{
+	}
+
+	unsigned short X_Pos;
+	unsigned short Y_Pos;
+	unsigned short Screen_Width;
+	unsigned char Width, Height;
 };
 //------------------------------------------------------------------------------------------------------------
 class ASymbol
