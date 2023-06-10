@@ -148,6 +148,7 @@
     <ClCompile Include="Panel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asm_Tools_Interface.h" />
     <ClInclude Include="Commander.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Panel.h" />

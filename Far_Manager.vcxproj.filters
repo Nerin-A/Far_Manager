@@ -22,11 +22,9 @@
     <Filter Include="Commander">
       <UniqueIdentifier>{d50eb5f7-ac1d-4926-96a0-972af9a01d03}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <MASM Include="Asm_Tools.asm">
-      <Filter>Source Files</Filter>
-    </MASM>
+    <Filter Include="Asm_Tools">
+      <UniqueIdentifier>{100b1415-3867-4d90-9bcc-3242b5ddd1c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -49,5 +47,13 @@
     <ClInclude Include="Commander.h">
       <Filter>Commander</Filter>
     </ClInclude>
+    <ClInclude Include="Asm_Tools_Interface.h">
+      <Filter>Asm_Tools</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="Asm_Tools.asm">
+      <Filter>Asm_Tools</Filter>
+    </MASM>
   </ItemGroup>
 </Project>
