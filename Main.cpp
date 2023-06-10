@@ -6,14 +6,12 @@ AsCommander::~AsCommander()
 {
 	delete Left_Panel;
 	delete Right_Panel;
+	delete Screen_Buffer;
 }
 //------------------------------------------------------------------------------------------------------------
-void AsCommander::Init()
+bool AsCommander::Init()
 {
 	SMALL_RECT srctWriteRect;
-	CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info{};
-	CHAR_INFO* screen_buffer;
-	COORD screen_buffer_pos{};
 	int screen_buffer_size;
 
 	// Get a handle to the STDOUT screen buffer to copy from and create a new screen buffer to copy to.
@@ -23,25 +21,25 @@ void AsCommander::Init()
 	if (Std_Handle == INVALID_HANDLE_VALUE || Screen_Buffer_Handle == INVALID_HANDLE_VALUE)
 	{
 		printf("CreateConsoleScreenBuffer failed - (%d)\n", GetLastError());
-		return 1;
+		return false;
 	}
 
 	// Make the new screen buffer the active screen buffer.
 	if (!SetConsoleActiveScreenBuffer(Screen_Buffer_Handle))
 	{
 		printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
-		return 1;
+		return false;
 	}
 
-	if (!GetConsoleScreenBufferInfo(Screen_Buffer_Handle, &screen_buffer_info))
+	if (!GetConsoleScreenBufferInfo(Screen_Buffer_Handle, &Screen_Buffer_Info))
 	{
 		printf("GetConsoleScreenBufferInfo failed - (%d)\n", GetLastError());
-		return 1;
+		return false;
 	}
 
-	screen_buffer_size = (int)screen_buffer_info.dwSize.X * (int)screen_buffer_info.dwSize.Y;
-	screen_buffer = new CHAR_INFO[screen_buffer_size];
-	memset(screen_buffer, 0, screen_buffer_size * sizeof(CHAR_INFO));
+	screen_buffer_size = (int)Screen_Buffer_Info.dwSize.X * (int)Screen_Buffer_Info.dwSize.Y;
+	Screen_Buffer = new CHAR_INFO[screen_buffer_size];
+	memset(Screen_Buffer, 0, screen_buffer_size * sizeof(CHAR_INFO));
 
 	// Set the destination rectangle.
 
@@ -50,31 +48,36 @@ void AsCommander::Init()
 	srctWriteRect.Bottom = 11; // bot. rt: row 11, col 79
 	srctWriteRect.Right = 79;
 
-	short half_width = screen_buffer_info.dwSize.X / 2;
-	Left_Panel = new APanel (0, 0, half_width, screen_buffer_info.dwSize.Y - 2, screen_buffer, screen_buffer_info.dwSize.X);
-	Right_Panel = new APanel (half_width, 0, half_width, screen_buffer_info.dwSize.Y - 2, screen_buffer, screen_buffer_info.dwSize.X);
+	short half_width = Screen_Buffer_Info.dwSize.X / 2;
+	Left_Panel = new APanel (0, 0, half_width, Screen_Buffer_Info.dwSize.Y - 2, Screen_Buffer, Screen_Buffer_Info.dwSize.X);
+	Right_Panel = new APanel (half_width, 0, half_width, Screen_Buffer_Info.dwSize.Y - 2, Screen_Buffer, Screen_Buffer_Info.dwSize.X);
+
+	return true;
 }
 //------------------------------------------------------------------------------------------------------------
-void AsCommander::Draw()
+bool AsCommander::Draw()
 {
+	COORD screen_buffer_pos{};
+
 	Left_Panel->Draw();
 	Right_Panel->Draw();
 
-	if (!WriteConsoleOutput(Screen_Buffer_Handle, screen_buffer, screen_buffer_info.dwSize, screen_buffer_pos, &screen_buffer_info.srWindow))
+	if (!WriteConsoleOutput(Screen_Buffer_Handle, Screen_Buffer, Screen_Buffer_Info.dwSize, screen_buffer_pos, &Screen_Buffer_Info.srWindow))
 	{
 		printf("WriteConsoleOutput failed - (%d)\n", GetLastError());
-		return 1;
+		return false;
 	}
 
 	Sleep(100 * 1000);
 
 	// Restore the original active screen buffer.
-
 	if (!SetConsoleActiveScreenBuffer(Std_Handle))
 	{
 		printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
-		return 1;
+		return false;
 	}
+
+	return true;
 }
 //------------------------------------------------------------------------------------------------------------
 
