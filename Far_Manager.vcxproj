@@ -143,10 +143,12 @@
     <MASM Include="Asm_Tools.asm" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Commander.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Panel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Commander.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Panel.h" />
   </ItemGroup>
