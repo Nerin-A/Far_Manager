@@ -314,9 +314,32 @@ Draw_Text proc
 ; R8 = string
 ; Return NONE
 
+	push rax
+	push rdi
+	push r8
+
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
 
+	mov rax, rdx
+	shr rax, 32 ; EAX = position.Attributes
+	mov ah, 0
+
+_1:
+	mov al, [r8] ; AL = next symbol of the string
+
+	cmp al, 0
+	je _exit
+
+	inc r8 ; incrementing the pointer to the enxt symbol in the string
+
+	stosd
+	jmp _1
+
+_exit:
+	pop r8
+	pop rdi
+	pop rax
 
 	ret
 
