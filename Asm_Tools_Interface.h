@@ -8,4 +8,6 @@ extern "C" void Draw_Line_Horizontal(CHAR_INFO * screen_buffer, XYPos x_y_pos, A
 extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos x_y_pos, ASymbol symbol);
 extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
 extern "C" void Clear_Area(CHAR_INFO * screen_buffer, SArea_Pos area_pos, ASymbol symbol);
+extern "C" void Draw_Text(CHAR_INFO* screen_buffer, XYPos position, const char* string);
+
 //------------------------------------------------------------------------------------------------------------

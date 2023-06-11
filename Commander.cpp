@@ -62,6 +62,10 @@ bool AsCommander::Draw()
 	Left_Panel->Draw();
 	Right_Panel->Draw();
 
+	XYPos position();
+	const char* string = "1";
+	Draw_Text(Screen_Buffer, position, string);
+
 	if (!WriteConsoleOutput(Screen_Buffer_Handle, Screen_Buffer, Screen_Buffer_Info.dwSize, screen_buffer_pos, &Screen_Buffer_Info.srWindow))
 	{
 		printf("WriteConsoleOutput failed - (%d)\n", GetLastError());
