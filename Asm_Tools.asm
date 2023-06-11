@@ -306,4 +306,21 @@ _0:
 
 Clear_Area endp
 ;------------------------------------------------------------------------------------------------------------
+Draw_Text proc
+; extern "C" void Draw_Text(CHAR_INFO* screen_buffer, XYPos position, const char* string);
+; Parameters:
+; RCX = screen_buffer
+; RDX = position
+; R8 = string
+; Return NONE
+
+	; 1. Calculate the address to output a character
+	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
+
+
+	ret
+
+Draw_Text endp
+;------------------------------------------------------------------------------------------------------------
+
 end
