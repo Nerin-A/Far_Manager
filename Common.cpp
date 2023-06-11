@@ -1,9 +1,20 @@
 ﻿#include "Common.h"
 
-// XYPos
+// X_Y_Pos
 //------------------------------------------------------------------------------------------------------------
-XYPos::XYPos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length)
+X_Y_Pos::X_Y_Pos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length)
 	: X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Length(length)
+{
+}
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+// X_Y_Text_Pos
+//------------------------------------------------------------------------------------------------------------
+X_Y_Text_Pos::X_Y_Text_Pos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short attributes)
+	: X_Pos(x_pos), Y_Pos(y_pos), Screen_Width(screen_width), Attributes(attributes)
 {
 }
 //------------------------------------------------------------------------------------------------------------

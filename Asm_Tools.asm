@@ -89,7 +89,7 @@ Draw_End_Symbol proc
 Draw_End_Symbol endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Line_Horizontal proc
-; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, XYPos x_y_pos, ASymbol symbol);
+; extern "C" void Draw_Line_Horizontal (CHAR_INFO* screen_buffer, X_Y_Pos x_y_pos, ASymbol symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = x_y_pos
@@ -127,7 +127,7 @@ Draw_Line_Horizontal proc
 Draw_Line_Horizontal endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Line_Vertical proc
-;extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, XYPos x_y_pos, ASymbol symbol);
+;extern "C" void Draw_Line_Vertical(CHAR_INFO * screen_buffer, X_Y_Pos x_y_pos, ASymbol symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = x_y_pos
@@ -179,7 +179,7 @@ _1:
 Draw_Line_Vertical endp
 ;------------------------------------------------------------------------------------------------------------
 Show_Colors proc
-; extern "C" void Show_Colors(CHAR_INFO * screen_buffer, XYPos x_y_pos, CHAR_INFO symbol);
+; extern "C" void Show_Colors(CHAR_INFO * screen_buffer, X_Y_Pos x_y_pos, CHAR_INFO symbol);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = x_y_pos
@@ -307,7 +307,7 @@ _0:
 Clear_Area endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Text proc
-; extern "C" void Draw_Text(CHAR_INFO* screen_buffer, XYPos position, const char* string);
+; extern "C" void Draw_Text(CHAR_INFO* screen_buffer, X_Y_Text_Pos position, const char* string);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = position

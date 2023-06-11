@@ -62,7 +62,7 @@ bool AsCommander::Draw()
 	Left_Panel->Draw();
 	Right_Panel->Draw();
 
-	XYPos position();
+	X_Y_Text_Pos position(0, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0x1b);
 	const char* string = "1";
 	Draw_Text(Screen_Buffer, position, string);
 

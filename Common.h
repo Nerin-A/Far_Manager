@@ -1,14 +1,24 @@
 ﻿#pragma once
 
 //------------------------------------------------------------------------------------------------------------
-struct XYPos
+struct X_Y_Pos
 {
-	XYPos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length);
+	X_Y_Pos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short length);
 
 	unsigned short X_Pos;
 	unsigned short Y_Pos;
 	unsigned short Screen_Width;
 	unsigned short Length;
+};
+//------------------------------------------------------------------------------------------------------------
+struct X_Y_Text_Pos
+{
+	X_Y_Text_Pos(unsigned short x_pos, unsigned short y_pos, unsigned short screen_width, unsigned short attributes);
+
+	unsigned short X_Pos;
+	unsigned short Y_Pos;
+	unsigned short Screen_Width;
+	unsigned short Attributes;
 };
 //------------------------------------------------------------------------------------------------------------
 struct SArea_Pos

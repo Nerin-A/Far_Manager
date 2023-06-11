@@ -18,14 +18,14 @@ void APanel::Draw()
 	// 1.1 Upper line
 	{
 		ASymbol symbol(L'═', 0x1b, L'╔', L'╗');
-		XYPos position(X_Pos, Y_Pos, Screen_Width, Width - 2);
+		X_Y_Pos position(X_Pos, Y_Pos, Screen_Width, Width - 2);
 		Draw_Line_Horizontal(Screen_Buffer, position, symbol);
 	}
 
 	// 1.2 Lower line
 	{
 		ASymbol symbol(L'═', 0x1b, L'╚', L'╝');
-		XYPos position(X_Pos, Y_Pos + Height - 1, Screen_Width, Width - 2);
+		X_Y_Pos position(X_Pos, Y_Pos + Height - 1, Screen_Width, Width - 2);
 		Draw_Line_Horizontal(Screen_Buffer, position, symbol);
 	}
 
@@ -33,14 +33,14 @@ void APanel::Draw()
 	// 2.1 Left line
 	{
 		ASymbol symbol(L'║', 0x1b, L'║', L'║');
-		XYPos position(X_Pos, Y_Pos + 1, Screen_Width, Height - 4);
+		X_Y_Pos position(X_Pos, Y_Pos + 1, Screen_Width, Height - 4);
 		Draw_Line_Vertical(Screen_Buffer, position, symbol);
 	}
 
 	// 2.2 Right line
 	{
 		ASymbol symbol(L'║', 0x1b, L'║', L'║');
-		XYPos position(X_Pos + Width - 1, Y_Pos + 1, Screen_Width, Height - 4);
+		X_Y_Pos position(X_Pos + Width - 1, Y_Pos + 1, Screen_Width, Height - 4);
 		Draw_Line_Vertical(Screen_Buffer, position, symbol);
 	}
 
@@ -48,14 +48,14 @@ void APanel::Draw()
 	// 3.1 Middle horizontal line
 	{
 		ASymbol symbol(L'─', 0x1b, L'╟', L'╢');
-		XYPos position(X_Pos, Y_Pos + Height - 3, Screen_Width, Width - 2);
+		X_Y_Pos position(X_Pos, Y_Pos + Height - 3, Screen_Width, Width - 2);
 		Draw_Line_Horizontal(Screen_Buffer, position, symbol);
 	}
 
 	// 3.2 Middle vertical line
 	{
 		ASymbol symbol(L'║', 0x1b, L'╦', L'╨');
-		XYPos position(X_Pos + Width / 2, Y_Pos + 0, Screen_Width, Height - 4);
+		X_Y_Pos position(X_Pos + Width / 2, Y_Pos + 0, Screen_Width, Height - 4);
 		Draw_Line_Vertical(Screen_Buffer, position, symbol);
 	}
 
