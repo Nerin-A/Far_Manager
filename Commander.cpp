@@ -64,13 +64,13 @@ bool AsCommander::Draw()
 
 	{
 		X_Y_Text_Pos position(0, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0x07);
-		const char* string = "1";
+		const wchar_t* string = L"1";
 		Draw_Text(Screen_Buffer, position, string);
 	}
 
 	{
 		X_Y_Text_Pos position(1, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0xb0);
-		const char* string = "Help  ";
+		const wchar_t* string = L"Help  ";
 		Draw_Text(Screen_Buffer, position, string);
 	}
 

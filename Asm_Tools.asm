@@ -307,7 +307,7 @@ _0:
 Clear_Area endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Text proc
-; extern "C" void Draw_Text(CHAR_INFO* screen_buffer, X_Y_Text_Pos position, const char* string);
+; extern "C" void Draw_Text(CHAR_INFO* screen_buffer, X_Y_Text_Pos position, const wchar_t* string);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = position
@@ -323,15 +323,14 @@ Draw_Text proc
 
 	mov rax, rdx
 	shr rax, 32 ; EAX = position.Attributes
-	mov ah, 0
 
 _1:
-	mov al, [r8] ; AL = next symbol of the string
+	mov ax, [r8] ; AL = next symbol of the string
 
-	cmp al, 0
+	cmp ax, 0
 	je _exit
 
-	inc r8 ; incrementing the pointer to the enxt symbol in the string
+	add r8, 2 ; incrementing the pointer to the enxt symbol in the string
 
 	stosd
 	jmp _1
