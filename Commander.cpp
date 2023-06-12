@@ -9,10 +9,13 @@ AMenu_Item::AMenu_Item(unsigned short x_pos, unsigned short y_pos, const wchar_t
 //------------------------------------------------------------------------------------------------------------
 void AMenu_Item::Draw(CHAR_INFO* screen_buffer, unsigned short screen_width)
 {
-	X_Y_Text_Pos key_position(X_Pos, Y_Pos, screen_width, 0x07);
-	X_Y_Text_Pos name_position(X_Pos, Y_Pos, screen_width, 0xb0);
+	unsigned char key_string_length;
 
-	Draw_Text(screen_buffer, key_position, Key);
+	X_Y_Text_Pos key_position(X_Pos, Y_Pos, screen_width, 0x07);
+	key_string_length = Draw_Text(screen_buffer, key_position, Key);
+
+
+	X_Y_Text_Pos name_position(X_Pos + key_string_length, Y_Pos, screen_width, 0xb0);
 	Draw_Text(screen_buffer, name_position, Name);
 }
 //------------------------------------------------------------------------------------------------------------
