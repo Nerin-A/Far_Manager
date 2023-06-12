@@ -7,8 +7,13 @@ AMenu_Item::AMenu_Item(unsigned short x_pos, unsigned short y_pos, const wchar_t
 {
 }
 //------------------------------------------------------------------------------------------------------------
-void AMenu_Item::Draw(CHAR_INFO* screen_buffer)
+void AMenu_Item::Draw(CHAR_INFO* screen_buffer, unsigned short screen_width)
 {
+	X_Y_Text_Pos key_position(X_Pos, Y_Pos, screen_width, 0x07);
+	X_Y_Text_Pos name_position(X_Pos, Y_Pos, screen_width, 0xb0);
+
+	Draw_Text(screen_buffer, key_position, Key);
+	Draw_Text(screen_buffer, name_position, Name);
 }
 //------------------------------------------------------------------------------------------------------------
 
@@ -77,17 +82,8 @@ bool AsCommander::Draw()
 	Left_Panel->Draw();
 	Right_Panel->Draw();
 
-	{
-		X_Y_Text_Pos position(0, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0x07);
-		const wchar_t* string = L"1";
-		Draw_Text(Screen_Buffer, position, string);
-	}
-
-	{
-		X_Y_Text_Pos position(1, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0xb0);
-		const wchar_t* string = L"Help  ";
-		Draw_Text(Screen_Buffer, position, string);
-	}
+	AMenu_Item menu_item(0, Screen_Buffer_Info.dwSize.Y - 1, L"1", L"Help", 8);
+	menu_item.Draw(Screen_Buffer, Screen_Buffer_Info.dwSize.X);
 
 	if (!WriteConsoleOutput(Screen_Buffer_Handle, Screen_Buffer, Screen_Buffer_Info.dwSize, screen_buffer_pos, &Screen_Buffer_Info.srWindow))
 	{
