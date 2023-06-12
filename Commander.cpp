@@ -62,9 +62,17 @@ bool AsCommander::Draw()
 	Left_Panel->Draw();
 	Right_Panel->Draw();
 
-	X_Y_Text_Pos position(0, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0x1b);
-	const char* string = "1";
-	Draw_Text(Screen_Buffer, position, string);
+	{
+		X_Y_Text_Pos position(0, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0x07);
+		const char* string = "1";
+		Draw_Text(Screen_Buffer, position, string);
+	}
+
+	{
+		X_Y_Text_Pos position(1, Screen_Buffer_Info.dwSize.Y - 1, Screen_Buffer_Info.dwSize.X, 0xb0);
+		const char* string = "Help  ";
+		Draw_Text(Screen_Buffer, position, string);
+	}
 
 	if (!WriteConsoleOutput(Screen_Buffer_Handle, Screen_Buffer, Screen_Buffer_Info.dwSize, screen_buffer_pos, &Screen_Buffer_Info.srWindow))
 	{
