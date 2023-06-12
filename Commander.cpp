@@ -113,10 +113,13 @@ bool AsCommander::Draw()
 //------------------------------------------------------------------------------------------------------------
 void AsCommander::Build_Menu()
 {
-	short x_step = 10;
+	short x_pos = 0;
+	short x_step = Screen_Buffer_Info.dwSize.X / 10;
 
 	Menu_Items[0] = new AMenu_Item(x_step * 0, Screen_Buffer_Info.dwSize.Y - 1, L" 1", L"Help", 8);
-	Menu_Items[1] = new AMenu_Item(x_step * 1, Screen_Buffer_Info.dwSize.Y - 1, L" 2", L"UserMenu", 8);
+
+	x_pos += x_step;
+	Menu_Items[1] = new AMenu_Item(x_pos - 1, Screen_Buffer_Info.dwSize.Y - 1, L" 2", L"UserMenu", 8);
 	Menu_Items[2] = new AMenu_Item(x_step * 2, Screen_Buffer_Info.dwSize.Y - 1, L" 3", L"View", 8);
 	Menu_Items[3] = new AMenu_Item(x_step * 3, Screen_Buffer_Info.dwSize.Y - 1, L" 4", L"Edit", 8);
 	Menu_Items[4] = new AMenu_Item(x_step * 4, Screen_Buffer_Info.dwSize.Y - 1, L" 5", L"Copy", 8);
