@@ -1,5 +1,20 @@
 ﻿#include "Commander.h"
 
+// AMenu_Item
+//------------------------------------------------------------------------------------------------------------
+AMenu_Item::AMenu_Item(unsigned short x_pos, unsigned short y_pos, const wchar_t* key, const wchar_t* name, unsigned short length)
+	:X_Pos(x_pos), Y_Pos(y_pos), Key(key), Name(name), Length(length)
+{
+}
+//------------------------------------------------------------------------------------------------------------
+void AMenu_Item::Draw(CHAR_INFO* screen_buffer)
+{
+}
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
 // AsCommander
 //------------------------------------------------------------------------------------------------------------
 AsCommander::~AsCommander()

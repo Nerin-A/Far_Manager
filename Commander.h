@@ -2,6 +2,20 @@
 
 #include <stdio.h>
 #include "Panel.h"
+
+//------------------------------------------------------------------------------------------------------------
+class AMenu_Item
+{
+public:
+	AMenu_Item(unsigned short x_pos, unsigned short y_pos, const wchar_t* key, const wchar_t* name, unsigned short length);
+
+	void Draw(CHAR_INFO* screen_buffer);
+
+	unsigned short X_Pos;
+	unsigned short Y_Pos;
+	const wchar_t* Key, *Name;
+	unsigned short Length;
+};
 //------------------------------------------------------------------------------------------------------------
 class AsCommander
 {
