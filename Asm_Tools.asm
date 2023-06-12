@@ -349,5 +349,44 @@ _exit:
 
 Draw_Text endp
 ;------------------------------------------------------------------------------------------------------------
+Draw_Limited_Text proc
+; extern "C" void Draw_Limited_Text(CHAR_INFO * screen_buffer, X_Y_Text_Pos position, const wchar_t* string, unsigned short length);
+; Parameters:
+; RCX = screen_buffer
+; RDX = position
+; R8 = string
+; Return: RAX = string length
 
+	push rax
+	push rdi
+	push r8
+
+	; 1. Calculate the address to output a character
+	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
+
+	mov rax, rdx
+	shr rax, 32 ; EAX = position.Attributes
+
+_1:
+	mov ax, [r8] ; AL = next symbol of the string
+
+	cmp ax, 0
+	je _exit
+
+	add r8, 2 ; incrementing the pointer to the enxt symbol in the string
+
+	stosd
+	inc rbx
+	jmp _1
+
+_exit:
+
+	pop r8
+	pop rdi
+	pop rax
+
+	ret
+
+Draw_Limited_Text endp
+;------------------------------------------------------------------------------------------------------------
 end
