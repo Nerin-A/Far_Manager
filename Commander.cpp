@@ -74,16 +74,7 @@ bool AsCommander::Init()
 	Left_Panel = new APanel(0, 0, half_width, Screen_Buffer_Info.dwSize.Y - 2, Screen_Buffer, Screen_Buffer_Info.dwSize.X);
 	Right_Panel = new APanel(half_width, 0, half_width, Screen_Buffer_Info.dwSize.Y - 2, Screen_Buffer, Screen_Buffer_Info.dwSize.X);
 
-	Menu_Items[0] = new AMenu_Item(0,  Screen_Buffer_Info.dwSize.Y - 1, L" 1", L"Help", 8);
-	Menu_Items[1] = new AMenu_Item(10, Screen_Buffer_Info.dwSize.Y - 1, L" 2", L"UserMenu", 8);
-	Menu_Items[2] = new AMenu_Item(20, Screen_Buffer_Info.dwSize.Y - 1, L" 3", L"View", 8);
-	Menu_Items[3] = new AMenu_Item(30, Screen_Buffer_Info.dwSize.Y - 1, L" 4", L"Edit", 8);
-	Menu_Items[4] = new AMenu_Item(40, Screen_Buffer_Info.dwSize.Y - 1, L" 5", L"Copy", 8);
-	Menu_Items[5] = new AMenu_Item(50, Screen_Buffer_Info.dwSize.Y - 1, L" 6", L"RenMov", 8);
-	Menu_Items[6] = new AMenu_Item(60, Screen_Buffer_Info.dwSize.Y - 1, L" 7", L"MkDir", 8);
-	Menu_Items[7] = new AMenu_Item(70, Screen_Buffer_Info.dwSize.Y - 1, L" 8", L"Delete", 8);
-	Menu_Items[8] = new AMenu_Item(80, Screen_Buffer_Info.dwSize.Y - 1, L" 9", L"Config", 8);
-	Menu_Items[9] = new AMenu_Item(90, Screen_Buffer_Info.dwSize.Y - 1, L" 10",L"Quit", 8);
+	Build_Menu();
 
 	return true;
 }
@@ -118,5 +109,21 @@ bool AsCommander::Draw()
 	}
 
 	return true;
+}
+//------------------------------------------------------------------------------------------------------------
+void AsCommander::Build_Menu()
+{
+	short x_step = 10;
+
+	Menu_Items[0] = new AMenu_Item(x_step * 0, Screen_Buffer_Info.dwSize.Y - 1, L" 1", L"Help", 8);
+	Menu_Items[1] = new AMenu_Item(x_step * 1, Screen_Buffer_Info.dwSize.Y - 1, L" 2", L"UserMenu", 8);
+	Menu_Items[2] = new AMenu_Item(x_step * 2, Screen_Buffer_Info.dwSize.Y - 1, L" 3", L"View", 8);
+	Menu_Items[3] = new AMenu_Item(x_step * 3, Screen_Buffer_Info.dwSize.Y - 1, L" 4", L"Edit", 8);
+	Menu_Items[4] = new AMenu_Item(x_step * 4, Screen_Buffer_Info.dwSize.Y - 1, L" 5", L"Copy", 8);
+	Menu_Items[5] = new AMenu_Item(x_step * 5, Screen_Buffer_Info.dwSize.Y - 1, L" 6", L"RenMov", 8);
+	Menu_Items[6] = new AMenu_Item(x_step * 6, Screen_Buffer_Info.dwSize.Y - 1, L" 7", L"MkDir", 8);
+	Menu_Items[7] = new AMenu_Item(x_step * 7, Screen_Buffer_Info.dwSize.Y - 1, L" 8", L"Delete", 8);
+	Menu_Items[8] = new AMenu_Item(x_step * 8, Screen_Buffer_Info.dwSize.Y - 1, L" 9", L"Config", 8);
+	Menu_Items[9] = new AMenu_Item(x_step * 9, Screen_Buffer_Info.dwSize.Y - 1, L" 10", L"Quit", 8);
 }
 //------------------------------------------------------------------------------------------------------------

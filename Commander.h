@@ -26,6 +26,8 @@ public:
 	bool Draw();
 
 private:
+	void Build_Menu();
+	
 	HANDLE Std_Handle = 0;
 	HANDLE Screen_Buffer_Handle = 0;
 	CHAR_INFO* Screen_Buffer = 0;
