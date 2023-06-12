@@ -30,7 +30,10 @@ private:
 	HANDLE Screen_Buffer_Handle = 0;
 	CHAR_INFO* Screen_Buffer = 0;
 	CONSOLE_SCREEN_BUFFER_INFO Screen_Buffer_Info{};
+
 	APanel* Left_Panel = 0;
 	APanel* Right_Panel = 0;
+
+	AMenu_Item* Menu_Items[10]{};
 };
 //------------------------------------------------------------------------------------------------------------

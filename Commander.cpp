@@ -74,18 +74,24 @@ bool AsCommander::Init()
 	Left_Panel = new APanel(0, 0, half_width, Screen_Buffer_Info.dwSize.Y - 2, Screen_Buffer, Screen_Buffer_Info.dwSize.X);
 	Right_Panel = new APanel(half_width, 0, half_width, Screen_Buffer_Info.dwSize.Y - 2, Screen_Buffer, Screen_Buffer_Info.dwSize.X);
 
+	Menu_Items[0] = new AMenu_Item (0, Screen_Buffer_Info.dwSize.Y - 1, L"1", L"Help", 8);
+
 	return true;
 }
 //------------------------------------------------------------------------------------------------------------
 bool AsCommander::Draw()
 {
+	int i;
 	COORD screen_buffer_pos{};
 
 	Left_Panel->Draw();
 	Right_Panel->Draw();
 
-	AMenu_Item menu_item(0, Screen_Buffer_Info.dwSize.Y - 1, L"1", L"Help", 8);
-	menu_item.Draw(Screen_Buffer, Screen_Buffer_Info.dwSize.X);
+	for (i = 0; i < 10; i++)
+	{
+		if (Menu_Items[i] != 0)
+			Menu_Items[i]->Draw(Screen_Buffer, Screen_Buffer_Info.dwSize.X);
+	}
 
 	if (!WriteConsoleOutput(Screen_Buffer_Handle, Screen_Buffer, Screen_Buffer_Info.dwSize, screen_buffer_pos, &Screen_Buffer_Info.srWindow))
 	{
