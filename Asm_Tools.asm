@@ -359,8 +359,10 @@ Draw_Limited_Text proc
 ; Return: RAX = string length
 
 	push rax
+	push rcx
 	push rdi
 	push r8
+	push r9
 
 	; 1. Calculate the address to output a character
 	call Get_Pos_Address ; RDI = position of a symbol in buffer screen_buffer in x_y_pos
@@ -372,7 +374,7 @@ _1:
 	mov ax, [r8] ; AL = next symbol of the string
 
 	cmp ax, 0
-	je _exit
+	je _fill_the_string_with_spaces
 
 	add r8, 2 ; incrementing the pointer to the enxt symbol in the string
 
@@ -384,9 +386,17 @@ _1:
 
 	jmp _1
 
+_fill_the_string_with_spaces:
+	mov ax, 020h ; code for " " symbol
+	mov rcx, r9 ; spaces to fill
+
+	rep stosd
+
 _exit:
+	pop r9
 	pop r8
 	pop rdi
+	pop rcx
 	pop rax
 
 	ret
