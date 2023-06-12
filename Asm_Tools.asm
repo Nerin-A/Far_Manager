@@ -350,11 +350,12 @@ _exit:
 Draw_Text endp
 ;------------------------------------------------------------------------------------------------------------
 Draw_Limited_Text proc
-; extern "C" void Draw_Limited_Text(CHAR_INFO * screen_buffer, X_Y_Text_Pos position, const wchar_t* string, unsigned short length);
+; extern "C" void Draw_Limited_Text(CHAR_INFO * screen_buffer, X_Y_Text_Pos position, const wchar_t* string, unsigned short limit);
 ; Parameters:
 ; RCX = screen_buffer
 ; RDX = position
 ; R8 = string
+; R9 = limit
 ; Return: RAX = string length
 
 	push rax
@@ -376,11 +377,14 @@ _1:
 	add r8, 2 ; incrementing the pointer to the enxt symbol in the string
 
 	stosd
-	inc rbx
+	
+	dec r9
+	cmp r9, 0
+	je _exit ; Stop output when end of line is reached
+
 	jmp _1
 
 _exit:
-
 	pop r8
 	pop rdi
 	pop rax
