@@ -113,16 +113,16 @@ bool AsCommander::Draw()
 //------------------------------------------------------------------------------------------------------------
 void AsCommander::Add_Next_Menu_Item(unsigned char &index, short &x_pos, short x_step, const wchar_t* key, const wchar_t* name)
 {
-	Menu_Items[index++] = new AMenu_Item(x_pos - 1, Screen_Buffer_Info.dwSize.Y - 1, key, name, 8);
+	Menu_Items[index++] = new AMenu_Item(x_pos, Screen_Buffer_Info.dwSize.Y - 1, key, name, 8);
 	x_pos += x_step;
 
 	if (index == 2)
-		x_pos--;
+		--x_pos;
 }
 //------------------------------------------------------------------------------------------------------------
 void AsCommander::Build_Menu()
 {
-	unsigned char index;
+	unsigned char index = 0;
 	short x_pos = 0;
 	short x_step = Screen_Buffer_Info.dwSize.X / 10;
 
