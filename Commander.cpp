@@ -81,6 +81,12 @@ bool AsCommander::Init()
 
 	search_handle = FindFirstFileW(L"*.*", &find_data);
 
+	while (FindNextFileW(search_handle, &find_data))
+	{
+		int ctrl = 0;
+	}
+
+
 	return true;
 }
 //------------------------------------------------------------------------------------------------------------
