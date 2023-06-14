@@ -27,6 +27,7 @@ public:
 private:
 	void Draw_Panel();
 	void Draw_Files();
+	void Draw_A_Single_File(AFile_Descriptor* file_descriptor, unsigned short x_offset, unsigned short y_offset);
 	void Draw_Highlihgt();
 
 	unsigned short X_Pos, Y_Pos;
