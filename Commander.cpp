@@ -95,7 +95,7 @@ bool AsCommander::Init()
 
 	while (FindNextFileW(search_handle, &find_data))
 	{
-		int ctrl = 0;
+		AFile_Descriptor* file_descriptor = new AFile_Descriptor(find_data.dwFileAttributes, find_data.nFileSizeLow, find_data.nFileSizeHigh, find_data.cFileName);
 	}
 
 
