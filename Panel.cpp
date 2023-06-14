@@ -96,18 +96,27 @@ void APanel::Draw_Panels()
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Files()
 {
-	unsigned short y_offset = 2;
+	unsigned short x_offset = 0;
+	unsigned short y_offset = 0;
 
 	for (auto* file : Files)
 	{
-		X_Y_Text_Pos position(X_Pos + 1, Y_Pos + y_offset, Screen_Width, 0x1b);
+		X_Y_Text_Pos position(X_Pos + x_offset + 1, Y_Pos + y_offset + 2, Screen_Width, 0x1b);
 
 		Draw_Text(Screen_Buffer, position, file->Filename.c_str());
 
 		++y_offset;
 
-		if (y_offset >= Height - 5)
-			break;
+		if (y_offset >= Height - 15)
+		{ // Filled the left column with filenames
+			if (x_offset == 0)
+			{
+				x_offset += Width / 2;
+				y_offset = 2;
+			}
+			else
+				break; // We only have 2 columns with filenames
+		}
 	}
 }
 //------------------------------------------------------------------------------------------------------------
