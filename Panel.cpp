@@ -101,13 +101,16 @@ void APanel::Draw_Files()
 
 	for (auto* file : Files)
 	{
-		X_Y_Text_Pos position(X_Pos + x_offset + 1, Y_Pos + y_offset + 2, Screen_Width, 0x1b);
+		if ( (file->Attributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+		{
 
+		}
+		X_Y_Text_Pos position(X_Pos + x_offset + 1, Y_Pos + y_offset + 2, Screen_Width, 0x1b);
 		Draw_Text(Screen_Buffer, position, file->Filename.c_str());
 
 		++y_offset;
 
-		if (y_offset >= Height - 15)
+		if (y_offset >= Height - 5)
 		{ // Filled the left column with filenames
 			if (x_offset == 0)
 			{
