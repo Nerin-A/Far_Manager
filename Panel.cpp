@@ -1,5 +1,17 @@
 ﻿#include "Panel.h"
 
+// AFile_Descriptor
+//------------------------------------------------------------------------------------------------------------
+AFile_Descriptor::AFile_Descriptor(unsigned int attributes, unsigned int size_low, unsigned int size_high, wchar_t* file_name)
+	:Attributes(attributes), Filename(file_name)
+{
+	File_Size = (unsigned long long) size_low | ((unsigned long long) size_high << 32);
+}
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
 // APanel
 //------------------------------------------------------------------------------------------------------------
 APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width, unsigned short height, CHAR_INFO* screen_buffer, unsigned short screen_width)
@@ -61,5 +73,18 @@ void APanel::Draw()
 
 
 	//Show_Colors(Screen_Buffer, x_y_pos, symbol);
+}
+//------------------------------------------------------------------------------------------------------------
+void APanel::Get_Directory_Files()
+{
+	HANDLE search_handle;
+	WIN32_FIND_DATAW find_data{};
+
+	search_handle = FindFirstFileW(L"*.*", &find_data);
+
+	while (FindNextFileW(search_handle, &find_data))
+	{
+		AFile_Descriptor* file_descriptor = new AFile_Descriptor(find_data.dwFileAttributes, find_data.nFileSizeLow, find_data.nFileSizeHigh, find_data.cFileName);
+	}
 }
 //------------------------------------------------------------------------------------------------------------

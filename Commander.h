@@ -2,18 +2,7 @@
 
 #include <stdio.h>
 #include "Panel.h"
-#include <string>
 
-//------------------------------------------------------------------------------------------------------------
-class AFile_Descriptor
-{
-public:
-	AFile_Descriptor(unsigned int attributes, unsigned int size_low, unsigned int size_high, wchar_t *file_name);
-
-	unsigned int Attributes;
-	unsigned long long File_Size;
-	std::wstring Filename;
-};
 //------------------------------------------------------------------------------------------------------------
 class AMenu_Item
 {
