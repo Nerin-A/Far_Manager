@@ -1,5 +1,17 @@
 ﻿#include "Commander.h"
 
+// AFile_Descriptor
+//------------------------------------------------------------------------------------------------------------
+AFile_Descriptor::AFile_Descriptor(unsigned int attributes, unsigned int size_low, unsigned int size_high, wchar_t* file_name)
+	:Attributes(attributes), Filename(file_name)
+{
+	File_Size = (unsigned long long) size_low | ((unsigned long long) size_high << 32);
+}
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
 // AMenu_Item
 //------------------------------------------------------------------------------------------------------------
 AMenu_Item::AMenu_Item(unsigned short x_pos, unsigned short y_pos, const wchar_t* key, const wchar_t* name, unsigned short length)
