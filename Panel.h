@@ -24,6 +24,9 @@ public:
 	void Draw();
 	void Get_Directory_Files();
 
+private:
+	void Draw_Panels();
+	void Draw_Files();
 	unsigned short X_Pos, Y_Pos;
 	unsigned short Width, Height;
 	unsigned short Screen_Width;

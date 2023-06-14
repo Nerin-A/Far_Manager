@@ -22,6 +22,26 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw()
 {
+	Draw_Panels();
+	Draw_Files();
+}
+//------------------------------------------------------------------------------------------------------------
+void APanel::Get_Directory_Files()
+{
+	HANDLE search_handle;
+	WIN32_FIND_DATAW find_data{};
+
+	search_handle = FindFirstFileW(L"*.*", &find_data);
+
+	while (FindNextFileW(search_handle, &find_data))
+	{
+		AFile_Descriptor* file_descriptor = new AFile_Descriptor(find_data.dwFileAttributes, find_data.nFileSizeLow, find_data.nFileSizeHigh, find_data.cFileName);
+		Files.push_back(file_descriptor);
+	}
+}
+//------------------------------------------------------------------------------------------------------------
+void APanel::Draw_Panels()
+{
 	ASymbol symbol(L' ', 0x1b, L' ', L' ');
 	SArea_Pos area_pos(X_Pos + 1, Y_Pos + 1, Screen_Width, Width - 2, Height - 2);
 	Clear_Area(Screen_Buffer, area_pos, symbol);
@@ -74,17 +94,8 @@ void APanel::Draw()
 	//Show_Colors(Screen_Buffer, x_y_pos, symbol);
 }
 //------------------------------------------------------------------------------------------------------------
-void APanel::Get_Directory_Files()
+void APanel::Draw_Files()
 {
-	HANDLE search_handle;
-	WIN32_FIND_DATAW find_data{};
 
-	search_handle = FindFirstFileW(L"*.*", &find_data);
-
-	while (FindNextFileW(search_handle, &find_data))
-	{
-		AFile_Descriptor* file_descriptor = new AFile_Descriptor(find_data.dwFileAttributes, find_data.nFileSizeLow, find_data.nFileSizeHigh, find_data.cFileName);
-		Files.push_back(file_descriptor);
-	}
 }
 //------------------------------------------------------------------------------------------------------------
