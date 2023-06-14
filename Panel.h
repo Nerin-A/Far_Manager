@@ -25,12 +25,16 @@ public:
 	void Get_Directory_Files();
 
 private:
-	void Draw_Panels();
+	void Draw_Panel();
 	void Draw_Files();
+	void Draw_Highlihgt();
+
 	unsigned short X_Pos, Y_Pos;
 	unsigned short Width, Height;
 	unsigned short Screen_Width;
 	CHAR_INFO* Screen_Buffer;
+
+	unsigned short Current_File_Index;
 
 	std::vector<AFile_Descriptor*> Files;
 };

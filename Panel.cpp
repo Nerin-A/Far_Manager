@@ -22,8 +22,9 @@ APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width,
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw()
 {
-	Draw_Panels();
+	Draw_Panel();
 	Draw_Files();
+	Draw_Highlihgt();
 }
 //------------------------------------------------------------------------------------------------------------
 void APanel::Get_Directory_Files()
@@ -40,7 +41,7 @@ void APanel::Get_Directory_Files()
 	}
 }
 //------------------------------------------------------------------------------------------------------------
-void APanel::Draw_Panels()
+void APanel::Draw_Panel()
 {
 	ASymbol symbol(L' ', 0x1b, L' ', L' ');
 	SArea_Pos area_pos(X_Pos + 1, Y_Pos + 1, Screen_Width, Width - 2, Height - 2);
@@ -123,5 +124,10 @@ void APanel::Draw_Files()
 				break; // We only have 2 columns with filenames
 		}
 	}
+}
+//------------------------------------------------------------------------------------------------------------
+void APanel::Draw_Highlihgt()
+{
+	AFile_Descriptor* file_descriptor = Files[Current_File_Index];
 }
 //------------------------------------------------------------------------------------------------------------
