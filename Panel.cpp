@@ -105,7 +105,9 @@ void APanel::Draw_Files()
 		Draw_Text(Screen_Buffer, position, file->Filename.c_str());
 
 		++y_offset;
-	}
 
+		if (y_offset >= Height - 5)
+			break;
+	}
 }
 //------------------------------------------------------------------------------------------------------------
