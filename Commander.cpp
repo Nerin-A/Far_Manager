@@ -76,6 +76,8 @@ bool AsCommander::Init()
 
 	Build_Menu();
 
+	Left_Panel->Get_Directory_Files();
+
 	return true;
 }
 //------------------------------------------------------------------------------------------------------------

@@ -71,7 +71,6 @@ void APanel::Draw()
 		Draw_Line_Vertical(Screen_Buffer, position, symbol);
 	}
 
-
 	//Show_Colors(Screen_Buffer, x_y_pos, symbol);
 }
 //------------------------------------------------------------------------------------------------------------
