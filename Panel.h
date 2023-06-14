@@ -36,6 +36,8 @@ private:
 	CHAR_INFO* Screen_Buffer;
 
 	unsigned short Current_File_Index;
+	unsigned short Highlihgt_X_Offset;
+	unsigned short Highlihgt_Y_Offset;
 
 	std::vector<AFile_Descriptor*> Files;
 };

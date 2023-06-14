@@ -17,7 +17,6 @@ AFile_Descriptor::AFile_Descriptor(unsigned int attributes, unsigned int size_lo
 APanel::APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width, unsigned short height, CHAR_INFO* screen_buffer, unsigned short screen_width)
 :X_Pos(x_pos), Y_Pos(y_pos), Width(width), Height(height), Screen_Buffer(screen_buffer), Screen_Width(screen_width)
 {
-
 }
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw()
@@ -39,6 +38,10 @@ void APanel::Get_Directory_Files()
 		AFile_Descriptor* file_descriptor = new AFile_Descriptor(find_data.dwFileAttributes, find_data.nFileSizeLow, find_data.nFileSizeHigh, find_data.cFileName);
 		Files.push_back(file_descriptor);
 	}
+
+	Current_File_Index = 0;
+	Highlihgt_X_Offset = 0;
+	Highlihgt_Y_Offset = 0;
 }
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Panel()
@@ -97,7 +100,6 @@ void APanel::Draw_Panel()
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Files()
 {
-	//unsigned short attributes;
 	unsigned short x_offset = 0;
 	unsigned short y_offset = 0;
 
@@ -135,6 +137,8 @@ void APanel::Draw_A_Single_File(AFile_Descriptor* file_descriptor, unsigned shor
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Highlihgt()
 {
-	//AFile_Descriptor* file_descriptor = Files[Current_File_Index];
+	AFile_Descriptor* file_descriptor = Files[Current_File_Index];
+
+	Draw_A_Single_File(file_descriptor, Highlihgt_X_Offset, Highlihgt_Y_Offset);
 }
 //------------------------------------------------------------------------------------------------------------
