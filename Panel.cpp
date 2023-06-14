@@ -96,16 +96,18 @@ void APanel::Draw_Panels()
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Files()
 {
+	unsigned short attributes;
 	unsigned short x_offset = 0;
 	unsigned short y_offset = 0;
 
 	for (auto* file : Files)
 	{
-		if ( (file->Attributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
-		{
+		if (file->Attributes & FILE_ATTRIBUTE_DIRECTORY)
+			attributes = 0x1f;
+		else
+			attributes = 0x1b;
 
-		}
-		X_Y_Text_Pos position(X_Pos + x_offset + 1, Y_Pos + y_offset + 2, Screen_Width, 0x1b);
+		X_Y_Text_Pos position(X_Pos + x_offset + 1, Y_Pos + y_offset + 2, Screen_Width, attributes);
 		Draw_Text(Screen_Buffer, position, file->Filename.c_str());
 
 		++y_offset;
