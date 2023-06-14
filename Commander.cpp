@@ -76,6 +76,11 @@ bool AsCommander::Init()
 
 	Build_Menu();
 
+	HANDLE search_handle;
+	WIN32_FIND_DATAW find_data{};
+
+	search_handle = FindFirstFileW(L"*.*", &find_data);
+
 	return true;
 }
 //------------------------------------------------------------------------------------------------------------
@@ -113,7 +118,7 @@ bool AsCommander::Draw()
 //------------------------------------------------------------------------------------------------------------
 void AsCommander::Add_Next_Menu_Item(unsigned char &index, short &x_pos, short x_step, const wchar_t* key, const wchar_t* name)
 {
-	Menu_Items[index++] = new AMenu_Item(x_pos, Screen_Buffer_Info.dwSize.Y - 1, key, name, 8);
+	Menu_Items[index++] = new AMenu_Item(x_pos, Screen_Buffer_Info.dwSize.Y - 1, key, name, 11);
 	x_pos += x_step;
 
 	if (index == 2)
@@ -136,18 +141,5 @@ void AsCommander::Build_Menu()
 	Add_Next_Menu_Item(index, x_pos, x_step, L" 8",  L"Delete");
 	Add_Next_Menu_Item(index, x_pos, x_step, L" 9",  L"Config");
 	Add_Next_Menu_Item(index, x_pos, x_step, L" 10", L"Quit");
-
-	//Menu_Items[0] = new AMenu_Item(x_step * 0, Screen_Buffer_Info.dwSize.Y - 1, L" 1", L"Help", 8);
-
-	//x_pos += x_step;
-	//Menu_Items[1] = new AMenu_Item(x_pos - 1, Screen_Buffer_Info.dwSize.Y -  1, L" 2", L"UserMenu",    8);
-	//Menu_Items[2] = new AMenu_Item(x_step * 2, Screen_Buffer_Info.dwSize.Y - 1, L" 3", L"View",      8);
-	//Menu_Items[3] = new AMenu_Item(x_step * 3, Screen_Buffer_Info.dwSize.Y - 1, L" 4", L"Edit",     8);
-	//Menu_Items[4] = new AMenu_Item(x_step * 4, Screen_Buffer_Info.dwSize.Y - 1, L" 5", L"Copy",      8);
-	//Menu_Items[5] = new AMenu_Item(x_step * 5, Screen_Buffer_Info.dwSize.Y - 1, L" 6", L"RenMov",     8);
-	//Menu_Items[6] = new AMenu_Item(x_step * 6, Screen_Buffer_Info.dwSize.Y - 1, L" 7", L"MkDir",     8);
-	//Menu_Items[7] = new AMenu_Item(x_step * 7, Screen_Buffer_Info.dwSize.Y - 1, L" 8", L"Delete",     8);
-	//Menu_Items[8] = new AMenu_Item(x_step * 8, Screen_Buffer_Info.dwSize.Y - 1, L" 9", L"Config",     8);
-	//Menu_Items[9] = new AMenu_Item(x_step * 9, Screen_Buffer_Info.dwSize.Y - 1, L" 10", L"Quit",      8);
 }
 //------------------------------------------------------------------------------------------------------------
