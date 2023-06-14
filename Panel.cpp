@@ -85,6 +85,7 @@ void APanel::Get_Directory_Files()
 	while (FindNextFileW(search_handle, &find_data))
 	{
 		AFile_Descriptor* file_descriptor = new AFile_Descriptor(find_data.dwFileAttributes, find_data.nFileSizeLow, find_data.nFileSizeHigh, find_data.cFileName);
+		Files.push_back(file_descriptor);
 	}
 }
 //------------------------------------------------------------------------------------------------------------

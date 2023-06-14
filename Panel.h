@@ -3,6 +3,7 @@
 #include <windows.h>
 #include "Asm_Tools_Interface.h"
 #include <string>
+#include <vector>
 
 //------------------------------------------------------------------------------------------------------------
 class AFile_Descriptor
@@ -27,5 +28,7 @@ public:
 	unsigned short Width, Height;
 	unsigned short Screen_Width;
 	CHAR_INFO* Screen_Buffer;
+
+	std::vector<AFile_Descriptor*> Files;
 };
 //------------------------------------------------------------------------------------------------------------
