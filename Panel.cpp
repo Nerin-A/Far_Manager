@@ -105,7 +105,7 @@ void APanel::Draw_Files()
 
 	for (auto* file : Files)
 	{
-		Draw_A_Single_File(file, x_offset, y_offset);
+		Draw_A_Single_File(file, x_offset, y_offset, 0x10);
 
 		++y_offset;
 
@@ -122,14 +122,14 @@ void APanel::Draw_Files()
 	}
 }
 //------------------------------------------------------------------------------------------------------------
-void APanel::Draw_A_Single_File(AFile_Descriptor* file_descriptor, unsigned short x_offset, unsigned short y_offset)
+void APanel::Draw_A_Single_File(AFile_Descriptor* file_descriptor, unsigned short x_offset, unsigned short y_offset, unsigned short bg_attribute)
 {
 	unsigned short attributes;
 
 	if (file_descriptor->Attributes & FILE_ATTRIBUTE_DIRECTORY)
-		attributes = 0x1f;
+		attributes = bg_attribute | 0x0f;
 	else
-		attributes = 0x1b;
+		attributes = bg_attribute | 0x0b;
 
 	X_Y_Text_Pos position(X_Pos + x_offset + 1, Y_Pos + y_offset + 2, Screen_Width, attributes);
 	Draw_Text(Screen_Buffer, position, file_descriptor->Filename.c_str());
@@ -137,8 +137,13 @@ void APanel::Draw_A_Single_File(AFile_Descriptor* file_descriptor, unsigned shor
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Highlihgt()
 {
-	AFile_Descriptor* file_descriptor = Files[Current_File_Index];
+	AFile_Descriptor* file_descriptor;
+	
+	if (Current_File_Index >= Files.size())
+		return;
 
-	Draw_A_Single_File(file_descriptor, Highlihgt_X_Offset, Highlihgt_Y_Offset);
+	file_descriptor = Files[Current_File_Index];
+
+	Draw_A_Single_File(file_descriptor, Highlihgt_X_Offset, Highlihgt_Y_Offset, 0xb0);
 }
 //------------------------------------------------------------------------------------------------------------
