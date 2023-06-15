@@ -104,14 +104,25 @@ void AsCommander::Run()
 				{
 					if (input_record[0].EventType == KEY_EVENT)
 					{
-						if (input_record[0].Event.KeyEvent.wVirtualKeyCode == VK_F10)
+						switch (input_record[0].Event.KeyEvent.wVirtualKeyCode)
+						{
+						case VK_F10:
 							Can_Run = false;
+							break;
 
-						if (input_record[0].Event.KeyEvent.wVirtualKeyCode == VK_UP)
-							int zzz = 0;
+						case VK_UP:
+							Left_Panel->Move_Highlight(true);
+							Have_To_Redraw = true;
+							break;
 
-						if (input_record[0].Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
-							int zzz = 0;
+						case VK_DOWN:
+							Left_Panel->Move_Highlight(false);
+							Have_To_Redraw = true;
+							break;
+
+						default:
+							break;
+						}
 					}
 				}
 			}
