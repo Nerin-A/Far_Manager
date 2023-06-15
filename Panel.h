@@ -40,8 +40,8 @@ private:
 	unsigned short Current_File_Index;
 	unsigned short Highlihgt_X_Offset;
 	unsigned short Highlihgt_Y_Offset;
-	std::wstring Current_Directory;
 
+	std::wstring Current_Directory;
 	std::vector<AFile_Descriptor*> Files;
 };
 //------------------------------------------------------------------------------------------------------------

@@ -39,6 +39,9 @@ bool AsCommander::Init()
 {
 	SMALL_RECT srctWriteRect;
 	int screen_buffer_size;
+	wchar_t current_directory[MAX_PATH];
+
+	GetCurrentDirectory(MAX_PATH, current_directory);
 
 	Std_Input_Handle = GetStdHandle(STD_INPUT_HANDLE);
 	Std_Output_Handle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -81,7 +84,7 @@ bool AsCommander::Init()
 
 	Build_Menu();
 
-	Left_Panel->Get_Directory_Files();
+	Left_Panel->Get_Directory_Files(std::wstring(current_directory));
 
 	return true;
 }
