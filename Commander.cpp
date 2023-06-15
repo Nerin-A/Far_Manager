@@ -88,16 +88,16 @@ bool AsCommander::Init()
 //------------------------------------------------------------------------------------------------------------
 void AsCommander::Run()
 {
+	unsigned long records_count;
+	INPUT_RECORD input_record[128];
+
 	Can_Run = true;
 
 	while (Can_Run)
 	{
-		if ( PeekConsoleInput(
-			_In_  HANDLE        hConsoleInput,
-			_Out_ PINPUT_RECORD lpBuffer,
-			_In_  DWORD         nLength,
-			_Out_ LPDWORD       lpNumberOfEventsRead
-		));
+		if ( PeekConsoleInput (Std_Input_Handle, input_record, 128, &records_count))
+
+
 		if (!Draw())
 			return;
 	}
