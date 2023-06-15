@@ -32,7 +32,8 @@ private:
 
 	bool Can_Run;
 	
-	HANDLE Std_Handle = 0;
+	HANDLE Std_Input_Handle = 0;
+	HANDLE Std_Output_Handle = 0;
 	HANDLE Screen_Buffer_Handle = 0;
 	CHAR_INFO* Screen_Buffer = 0;
 	CONSOLE_SCREEN_BUFFER_INFO Screen_Buffer_Info{};

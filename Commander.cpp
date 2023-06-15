@@ -26,6 +26,10 @@ void AMenu_Item::Draw(CHAR_INFO* screen_buffer, unsigned short screen_width)
 //------------------------------------------------------------------------------------------------------------
 AsCommander::~AsCommander()
 {
+	// Restore the original active screen buffer.
+	if (!SetConsoleActiveScreenBuffer(Std_Output_Handle))
+		printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
+
 	delete Left_Panel;
 	delete Right_Panel;
 	delete Screen_Buffer;
@@ -36,11 +40,12 @@ bool AsCommander::Init()
 	SMALL_RECT srctWriteRect;
 	int screen_buffer_size;
 
-	// Get a handle to the STDOUT screen buffer to copy from and create a new screen buffer to copy to.
-	Std_Handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	Std_Input_Handle = GetStdHandle(STD_INPUT_HANDLE);
+	Std_Output_Handle = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	Screen_Buffer_Handle = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, CONSOLE_TEXTMODE_BUFFER, 0);
 
-	if (Std_Handle == INVALID_HANDLE_VALUE || Screen_Buffer_Handle == INVALID_HANDLE_VALUE)
+	if (Std_Input_Handle == INVALID_HANDLE_VALUE || Std_Output_Handle == INVALID_HANDLE_VALUE || Screen_Buffer_Handle == INVALID_HANDLE_VALUE)
 	{
 		printf("CreateConsoleScreenBuffer failed - (%d)\n", GetLastError());
 		return false;
@@ -87,10 +92,15 @@ void AsCommander::Run()
 
 	while (Can_Run)
 	{
+		if ( PeekConsoleInput(
+			_In_  HANDLE        hConsoleInput,
+			_Out_ PINPUT_RECORD lpBuffer,
+			_In_  DWORD         nLength,
+			_Out_ LPDWORD       lpNumberOfEventsRead
+		));
 		if (!Draw())
 			return;
 	}
-
 }
 //------------------------------------------------------------------------------------------------------------
 bool AsCommander::Draw()
@@ -114,13 +124,6 @@ bool AsCommander::Draw()
 	}
 
 	Sleep(100 * 1000);
-
-	// Restore the original active screen buffer.
-	if (!SetConsoleActiveScreenBuffer(Std_Handle))
-	{
-		printf("SetConsoleActiveScreenBuffer failed - (%d)\n", GetLastError());
-		return false;
-	}
 
 	return true;
 }
