@@ -23,9 +23,10 @@ public:
 	~AsCommander();
 
 	bool Init();
-	bool Draw();
+	void Run();
 
 private:
+	bool Draw();
 	void Add_Next_Menu_Item(unsigned char &index, short& x_pos, short x_step, const wchar_t* key, const wchar_t* name);
 	void Build_Menu();
 	
