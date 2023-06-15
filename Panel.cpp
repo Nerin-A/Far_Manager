@@ -36,7 +36,9 @@ void APanel::Get_Directory_Files(const std::wstring &current_directory)
 
 	Files.erase(Files.begin(), Files.end());
 
-	search_handle = FindFirstFileW((current_directory + L"*.*").c_str(), &find_data);
+	Current_Directory = current_directory;
+
+	search_handle = FindFirstFileW((current_directory + L"\\*.*").c_str(), &find_data);
 
 	while (FindNextFileW(search_handle, &find_data))
 	{
@@ -82,11 +84,9 @@ void APanel::On_Enter()
 		else
 		{ // We enter the selected directory
 
-			std::wstring new_current_directory = Current_Directory + file_descriptor->Filename;
+			std::wstring new_current_directory = Current_Directory + L"\\" + file_descriptor->Filename;
 
 			Get_Directory_Files(new_current_directory);
-
-			Current_Directory = new_current_directory;
 		}
 	}
 }
