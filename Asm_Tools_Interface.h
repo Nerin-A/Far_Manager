@@ -11,4 +11,5 @@ extern "C" void Clear_Area(CHAR_INFO * screen_buffer, SArea_Pos area_pos, ASymbo
 extern "C" unsigned char Draw_Text(CHAR_INFO * screen_buffer, X_Y_Text_Pos position, const wchar_t* string);
 extern "C" void Draw_Limited_Text(CHAR_INFO * screen_buffer, X_Y_Text_Pos position, const wchar_t* string, unsigned short limit);
 
+extern "C" void Test_Command();
 //------------------------------------------------------------------------------------------------------------
