@@ -76,6 +76,12 @@ void APanel::On_Enter()
 		}
 		else
 		{ // We enter the selected directory
+
+			std::wstring new_current_directory = Current_Directory + file_descriptor->Filename;
+
+			Get_Directory_Files(new_current_directory);
+
+			Current_Directory = new_current_directory;
 		}
 	}
 }
