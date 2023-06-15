@@ -83,10 +83,10 @@ bool AsCommander::Init()
 //------------------------------------------------------------------------------------------------------------
 void AsCommander::Run()
 {
-	while (true)
+	Can_Run = true;
+
+	while (Can_Run)
 	{
-
-
 		if (!Draw())
 			return;
 	}
