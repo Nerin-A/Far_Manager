@@ -95,7 +95,19 @@ void AsCommander::Run()
 
 	while (Can_Run)
 	{
-		if ( PeekConsoleInput (Std_Input_Handle, input_record, 128, &records_count))
+		if (PeekConsoleInput (Std_Input_Handle, input_record, 128, &records_count))
+		{
+			if (ReadConsoleInput(Std_Input_Handle, input_record, 1, &records_count))
+			{
+				if (records_count != 0)
+				{
+					if (input_record[0].EventType == KEY_EVENT)
+					{
+
+					}
+				}
+			}
+		}
 
 
 		if (!Draw())
