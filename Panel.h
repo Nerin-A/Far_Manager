@@ -22,7 +22,7 @@ public:
 	APanel(unsigned short x_pos, unsigned short y_pos, unsigned short width, unsigned short height, CHAR_INFO* screen_buffer, unsigned short screen_width);
 
 	void Draw();
-	void Get_Directory_Files(std::wstring new_current_directory);
+	void Get_Directory_Files(const std::wstring &current_directory);
 	void Move_Highlight(bool move_up);
 	void On_Enter();
 

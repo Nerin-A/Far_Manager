@@ -26,12 +26,17 @@ void APanel::Draw()
 	Draw_Highlihgt();
 }
 //------------------------------------------------------------------------------------------------------------
-void APanel::Get_Directory_Files()
+void APanel::Get_Directory_Files(const std::wstring &current_directory)
 {
 	HANDLE search_handle;
 	WIN32_FIND_DATAW find_data{};
 
-	search_handle = FindFirstFileW(L"*.*", &find_data);
+	for (auto* file : Files)
+		delete file;
+
+	Files.erase(Files.begin(), Files.end());
+
+	search_handle = FindFirstFileW((current_directory + L"*.*").c_str(), &find_data);
 
 	while (FindNextFileW(search_handle, &find_data))
 	{
