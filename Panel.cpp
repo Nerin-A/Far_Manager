@@ -56,7 +56,7 @@ void APanel::Move_Highlight(bool move_up)
 	}
 	else
 	{
-		if (Current_File_Index + 1 < Files.size())
+		if (Current_File_Index + (unsigned short)1 < Files.size())
 		{
 			++Current_File_Index;
 			++Highlihgt_Y_Offset;

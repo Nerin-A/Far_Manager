@@ -102,7 +102,7 @@ void AsCommander::Run()
 			{
 				if (records_count != 0)
 				{
-					if (input_record[0].EventType == KEY_EVENT)
+					if (input_record[0].EventType == KEY_EVENT && input_record[0].Event.KeyEvent.bKeyDown)
 					{
 						switch (input_record[0].Event.KeyEvent.wVirtualKeyCode)
 						{
@@ -159,8 +159,6 @@ bool AsCommander::Draw()
 		printf("WriteConsoleOutput failed - (%d)\n", GetLastError());
 		return false;
 	}
-
-	Sleep(100 * 1000);
 
 	return true;
 }
