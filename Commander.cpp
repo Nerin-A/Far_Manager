@@ -91,6 +91,7 @@ void AsCommander::Run()
 	unsigned long records_count;
 	INPUT_RECORD input_record[128];
 
+	Have_To_Redraw = true;
 	Can_Run = true;
 
 	while (Can_Run)
@@ -116,9 +117,13 @@ void AsCommander::Run()
 			}
 		}
 
+		if (Have_To_Redraw)
+		{
+			if (!Draw())
+				return;
 
-		if (!Draw())
-			return;
+			Have_To_Redraw = false;
+		}
 	}
 }
 //------------------------------------------------------------------------------------------------------------

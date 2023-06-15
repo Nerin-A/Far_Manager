@@ -31,6 +31,7 @@ private:
 	void Build_Menu();
 
 	bool Can_Run;
+	bool Have_To_Redraw;
 	
 	HANDLE Std_Input_Handle = 0;
 	HANDLE Std_Output_Handle = 0;
