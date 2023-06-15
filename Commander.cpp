@@ -103,7 +103,14 @@ void AsCommander::Run()
 				{
 					if (input_record[0].EventType == KEY_EVENT)
 					{
+						if (input_record[0].Event.KeyEvent.wVirtualKeyCode == VK_F10)
+							Can_Run = false;
 
+						if (input_record[0].Event.KeyEvent.wVirtualKeyCode == VK_UP)
+							int zzz = 0;
+
+						if (input_record[0].Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
+							int zzz = 0;
 					}
 				}
 			}
