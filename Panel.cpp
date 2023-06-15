@@ -36,7 +36,7 @@ void APanel::Get_Directory_Files(const std::wstring &current_directory)
 
 	Files.erase(Files.begin(), Files.end());
 
-	search_handle = FindFirstFileW((current_directory + L"*.*").c_str(), &find_data);
+	search_handle = FindFirstFileW((current_directory + L"\\*.*").c_str(), &find_data);
 
 	while (FindNextFileW(search_handle, &find_data))
 	{
