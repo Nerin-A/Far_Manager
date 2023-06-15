@@ -132,7 +132,7 @@ void APanel::Draw_A_Single_File(AFile_Descriptor* file_descriptor, unsigned shor
 		attributes = bg_attribute | 0x0b;
 
 	X_Y_Text_Pos position(X_Pos + x_offset + 1, Y_Pos + y_offset + 2, Screen_Width, attributes);
-	Draw_Text(Screen_Buffer, position, file_descriptor->Filename.c_str());
+	Draw_Limited_Text(Screen_Buffer, position, file_descriptor->Filename.c_str(), Width / 2 - 1);
 }
 //------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Highlihgt()
