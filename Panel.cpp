@@ -64,6 +64,22 @@ void APanel::Move_Highlight(bool move_up)
 	}
 }
 //------------------------------------------------------------------------------------------------------------
+void APanel::On_Enter()
+{
+	AFile_Descriptor* file_descriptor = Files[Current_File_Index];
+
+	if (file_descriptor->Attributes & FILE_ATTRIBUTE_DIRECTORY)
+	{
+		if (file_descriptor->Filename == L"..")
+		{ // Exit to the previous directory
+
+		}
+		else
+		{ // We enter the selected directory
+		}
+	}
+}
+//------------------------------------------------------------------------------------------------------------
 void APanel::Draw_Panel()
 {
 	ASymbol symbol(L' ', 0x1b, L' ', L' ');

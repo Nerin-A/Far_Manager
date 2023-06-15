@@ -24,6 +24,7 @@ public:
 	void Draw();
 	void Get_Directory_Files();
 	void Move_Highlight(bool move_up);
+	void On_Enter();
 
 private:
 	void Draw_Panel();

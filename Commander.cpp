@@ -120,6 +120,11 @@ void AsCommander::Run()
 							Have_To_Redraw = true;
 							break;
 
+						case VK_RETURN:
+							Left_Panel->On_Enter();
+							Have_To_Redraw = true;
+							break;
+
 						default:
 							break;
 						}
